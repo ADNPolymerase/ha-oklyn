@@ -20,7 +20,9 @@
           "enable_aux1": "Activer l'auxiliaire 1",
           "enable_aux2": "Activer l'auxiliaire 2",
           "aux1_name": "Nom de l'auxiliaire 1",
-          "aux2_name": "Nom de l'auxiliaire 2"
+          "aux2_name": "Nom de l'auxiliaire 2",
+          "aux1_mode": "Type auxiliaire 1 (switch = commandable, regulator = lecture seule)",
+          "aux2_mode": "Type auxiliaire 2 (switch = commandable, regulator = lecture seule)"
         }
       },
       "reauth_confirm": {
@@ -51,7 +53,9 @@
           "enable_aux1": "Activer l'auxiliaire 1",
           "enable_aux2": "Activer l'auxiliaire 2",
           "aux1_name": "Nom de l'auxiliaire 1",
-          "aux2_name": "Nom de l'auxiliaire 2"
+          "aux2_name": "Nom de l'auxiliaire 2",
+          "aux1_mode": "Type auxiliaire 1 (switch = commandable, regulator = lecture seule)",
+          "aux2_mode": "Type auxiliaire 2 (switch = commandable, regulator = lecture seule)"
         }
       }
     }

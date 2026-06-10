@@ -1,17 +1,20 @@
-"""Switch platform for Oklyn auxiliaries."""
+"""Binary sensor platform for Oklyn auxiliaries in regulator mode (read-only)."""
 from __future__ import annotations
 
 import logging
 from typing import Any
 
-from homeassistant.components.switch import SwitchEntity
+from homeassistant.components.binary_sensor import (
+    BinarySensorDeviceClass,
+    BinarySensorEntity,
+)
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .api import OklynAuxState
 from .const import (
-    AUX_MODE_SWITCH,
+    AUX_MODE_REGULATOR,
     DEFAULT_AUX1_NAME,
     DEFAULT_AUX2_NAME,
     DEFAULT_AUX_MODE,
@@ -36,25 +39,27 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     coordinator: OklynDataUpdateCoordinator = hass.data[DOMAIN][entry.entry_id]
-    entities: list[OklynAuxSwitch] = []
+    entities: list[OklynAuxBinarySensor] = []
 
     if (
         entry.options.get(OPT_ENABLE_AUX1, True)
-        and entry.options.get(OPT_AUX1_MODE, DEFAULT_AUX_MODE) == AUX_MODE_SWITCH
+        and entry.options.get(OPT_AUX1_MODE, DEFAULT_AUX_MODE) == AUX_MODE_REGULATOR
     ):
-        entities.append(OklynAuxSwitch(coordinator, entry, aux_id=1))
+        entities.append(OklynAuxBinarySensor(coordinator, entry, aux_id=1))
 
     if (
         entry.options.get(OPT_ENABLE_AUX2, True)
-        and entry.options.get(OPT_AUX2_MODE, DEFAULT_AUX_MODE) == AUX_MODE_SWITCH
+        and entry.options.get(OPT_AUX2_MODE, DEFAULT_AUX_MODE) == AUX_MODE_REGULATOR
     ):
-        entities.append(OklynAuxSwitch(coordinator, entry, aux_id=2))
+        entities.append(OklynAuxBinarySensor(coordinator, entry, aux_id=2))
 
     async_add_entities(entities)
 
 
-class OklynAuxSwitch(OklynEntity, SwitchEntity):
-    """Switch for an Oklyn auxiliary output."""
+class OklynAuxBinarySensor(OklynEntity, BinarySensorEntity):
+    """Read-only on/off state of an Oklyn auxiliary configured as a regulator."""
+
+    _attr_device_class = BinarySensorDeviceClass.RUNNING
 
     def __init__(
         self,
@@ -64,6 +69,8 @@ class OklynAuxSwitch(OklynEntity, SwitchEntity):
     ) -> None:
         super().__init__(coordinator, entry)
         self._aux_id = aux_id
+        # Same unique_id as the switch variant: switching the mode in the
+        # options migrates the entity instead of creating a duplicate.
         self._attr_unique_id = f"oklyn_{DEVICE_ID}_aux{aux_id}"
 
     @property
@@ -100,17 +107,6 @@ class OklynAuxSwitch(OklynEntity, SwitchEntity):
         return {
             "command": aux.command,
             "status": aux.status,
-            "in_transition": aux.in_transition,
             "changed_at": aux.changed_at_iso,
             "changed_at_raw": aux.changed_at_raw,
         }
-
-    async def async_turn_on(self, **kwargs: Any) -> None:
-        _LOGGER.debug("Turning on aux%d", self._aux_id)
-        await self.coordinator._client.async_set_aux(self._aux_id, "on")  # type: ignore[attr-defined]
-        await self.coordinator.async_refresh_after_command()
-
-    async def async_turn_off(self, **kwargs: Any) -> None:
-        _LOGGER.debug("Turning off aux%d", self._aux_id)
-        await self.coordinator._client.async_set_aux(self._aux_id, "off")  # type: ignore[attr-defined]
-        await self.coordinator.async_refresh_after_command()

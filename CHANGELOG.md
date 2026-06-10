@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.2.0] - 2026-06-10
+
+### Added
+- Auxiliary type option: **switch** (controllable) or **regulator** (read-only,
+  e.g. chlorine or temperature regulator)
+- In regulator mode the auxiliary is exposed as a `binary_sensor` (running)
+  instead of a `switch`
+- Type selectable per auxiliary, at setup and in the options flow
+
 ## [0.1.3] - 2026-06-10
 
 ### Added
