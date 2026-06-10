@@ -216,3 +216,21 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- Personal files, never publish (HA workspace) ---
+.claude/
+.DS_Store
+CLAUDE.md
+Clef
+Mon
+audit_*.md
+ecoflow_*.md
+prompt_chatgpt_*.md
+chatgpt_*.md
+*.log
+ha-audit-review.html
+docker-compose-diun.yml
+portail_v2_yaml.yaml
+powerstream_principale.yaml
+ps10_securite_reconnexion.yaml
+153931628871137.json
