@@ -47,6 +47,9 @@ STEP_USER_SCHEMA = vol.Schema(
 
 STEP_OPTIONS_SCHEMA = vol.Schema(
     {
+        vol.Optional(OPT_SCAN_INTERVAL, default=DEFAULT_SCAN_INTERVAL): vol.All(
+            vol.Coerce(int), vol.In(SCAN_INTERVAL_OPTIONS)
+        ),
         vol.Optional(OPT_ENABLE_AUX1, default=DEFAULT_ENABLE_AUX1): bool,
         vol.Optional(OPT_ENABLE_AUX2, default=DEFAULT_ENABLE_AUX2): bool,
         vol.Optional(OPT_AUX1_NAME, default=DEFAULT_AUX1_NAME): str,
@@ -78,6 +81,7 @@ class OklynConfigFlow(ConfigFlow, domain=DOMAIN):
             await self.async_set_unique_id(DEVICE_ID)
             self._abort_if_unique_id_configured()
 
+            user_input[CONF_API_TOKEN] = user_input[CONF_API_TOKEN].strip()
             error = await self._validate_token(user_input[CONF_API_TOKEN])
             if not error:
                 self._data = user_input
@@ -98,7 +102,7 @@ class OklynConfigFlow(ConfigFlow, domain=DOMAIN):
                 title=self._data.get(CONF_NAME, DEFAULT_NAME),
                 data={CONF_API_TOKEN: self._data[CONF_API_TOKEN]},
                 options={
-                    OPT_SCAN_INTERVAL: DEFAULT_SCAN_INTERVAL,
+                    OPT_SCAN_INTERVAL: user_input[OPT_SCAN_INTERVAL],
                     OPT_ENABLE_AUX1: user_input[OPT_ENABLE_AUX1],
                     OPT_ENABLE_AUX2: user_input[OPT_ENABLE_AUX2],
                     OPT_AUX1_NAME: user_input[OPT_AUX1_NAME],
@@ -122,6 +126,7 @@ class OklynConfigFlow(ConfigFlow, domain=DOMAIN):
         errors: dict[str, str] = {}
 
         if user_input is not None:
+            user_input[CONF_API_TOKEN] = user_input[CONF_API_TOKEN].strip()
             error = await self._validate_token(user_input[CONF_API_TOKEN])
             if not error:
                 entry = self._get_reauth_entry()
@@ -181,7 +186,7 @@ class OklynOptionsFlow(OptionsFlow):
                 vol.Optional(
                     OPT_SCAN_INTERVAL,
                     default=options.get(OPT_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL),
-                ): vol.In(SCAN_INTERVAL_OPTIONS),
+                ): vol.All(vol.Coerce(int), vol.In(SCAN_INTERVAL_OPTIONS)),
                 vol.Optional(
                     OPT_ENABLE_AUX1,
                     default=options.get(OPT_ENABLE_AUX1, DEFAULT_ENABLE_AUX1),

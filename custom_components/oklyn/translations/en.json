@@ -13,9 +13,10 @@
         }
       },
       "aux": {
-        "title": "Auxiliary outputs",
-        "description": "Configure the auxiliary outputs of your Oklyn controller.",
+        "title": "Integration options",
+        "description": "Configure polling and the auxiliary outputs of your Oklyn controller.",
         "data": {
+          "scan_interval": "Polling interval (seconds)",
           "enable_aux1": "Enable Auxiliary 1",
           "enable_aux2": "Enable Auxiliary 2",
           "aux1_name": "Auxiliary 1 name",

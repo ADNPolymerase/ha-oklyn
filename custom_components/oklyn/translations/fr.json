@@ -13,9 +13,10 @@
         }
       },
       "aux": {
-        "title": "Sorties auxiliaires",
-        "description": "Configurez les sorties auxiliaires de votre boîtier Oklyn.",
+        "title": "Options de l'intégration",
+        "description": "Configurez la fréquence d'interrogation et les sorties auxiliaires de votre boîtier Oklyn.",
         "data": {
+          "scan_interval": "Intervalle d'interrogation (secondes)",
           "enable_aux1": "Activer l'auxiliaire 1",
           "enable_aux2": "Activer l'auxiliaire 2",
           "aux1_name": "Nom de l'auxiliaire 1",
