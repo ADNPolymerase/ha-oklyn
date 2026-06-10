@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.2] - 2026-06-10
+
+### Fixed
+- Scan interval dropdown now preselects the current value in the options flow
+  (previously appeared empty) and defaults to 60 s at setup
+
+## [0.2.1] - 2026-06-10
+
+### Fixed
+- Removed invalid "pH" unit on the pH sensor (device_class `ph` requires no unit;
+  fixes the warning in Home Assistant logs)
+
 ## [0.2.0] - 2026-06-10
 
 ### Added

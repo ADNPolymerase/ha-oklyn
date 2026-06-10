@@ -31,7 +31,6 @@ SENSOR_DESCRIPTIONS: tuple[OklynSensorEntityDescription, ...] = (
         key=f"oklyn_{DEVICE_ID}_ph",
         translation_key="ph",
         data_key="ph",
-        native_unit_of_measurement="pH",
         device_class=SensorDeviceClass.PH,
         state_class=SensorStateClass.MEASUREMENT,
     ),

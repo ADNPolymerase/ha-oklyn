@@ -96,6 +96,38 @@ Les modifications prennent effet immédiatement (l'intégration se recharge auto
 
 ---
 
+## Exemple de tableau de bord
+
+### Oklyn Card (recommandé)
+
+Une carte Lovelace dédiée est disponible — pH/RedOx avec seuils, températures,
+contrôle pompe, auxiliaires (interrupteur ou régulateur), correction pH.
+Aucune dépendance, éditeur visuel complet.
+
+[![Ouvrir dans HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=ADNPolymerase&repository=hacs.oklyn-card&category=plugin)
+→ [ADNPolymerase/hacs.oklyn-card](https://github.com/ADNPolymerase/hacs.oklyn-card)
+
+### Exemples YAML
+
+Deux exemples prêts à l'emploi sont fournis :
+
+- [`examples/dashboard.yaml`](examples/dashboard.yaml) — **cartes natives uniquement**
+  (aucune dépendance HACS) : jauges de qualité de l'eau (pH / RedOx), tuiles de
+  température avec historique 24h, sélecteur de mode pompe et interrupteurs auxiliaires.
+- [`examples/dashboard-bubble.yaml`](examples/dashboard-bubble.yaml) — rendu plus soigné,
+  mais **nécessite deux plugins frontend HACS** (installation en 1 clic) :
+  - Bubble Card : [![Ouvrir dans HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Clooos&repository=Bubble-Card&category=plugin)
+  - Pool Monitor Card : [![Ouvrir dans HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=wilsto&repository=pool-monitor-card&category=plugin)
+
+  Boutons de mode pompe, contrôles auxiliaires 1/2 (chacun dans son bloc optionnel),
+  et un panneau complet de qualité de l'eau.
+
+Pour les utiliser : **Tableau de bord → ✏️ Modifier → ⋮ → Éditeur de configuration brute**,
+puis collez les cartes. Ajustez les identifiants d'entités si vous les avez renommés
+(note : les identifiants par défaut dépendent de la langue de votre Home Assistant).
+
+---
+
 ## Comportement important
 
 ### Pompe

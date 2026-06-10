@@ -98,6 +98,38 @@ Changes take effect immediately (integration reloads automatically).
 
 ---
 
+## Example dashboard
+
+### Oklyn Card (recommended)
+
+A dedicated Lovelace card is available — pH/RedOx with thresholds, temperatures,
+pump control, auxiliaries (switch or regulator), pH calibration offset.
+No dependency, full visual editor.
+
+[![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=ADNPolymerase&repository=hacs.oklyn-card&category=plugin)
+→ [ADNPolymerase/hacs.oklyn-card](https://github.com/ADNPolymerase/hacs.oklyn-card)
+
+### YAML examples
+
+Two ready-to-use examples are provided:
+
+- [`examples/dashboard.yaml`](examples/dashboard.yaml) — **native cards only** (no HACS
+  frontend dependency): water quality gauges (pH / RedOx), temperature tiles with 24h
+  history, pump mode selector and auxiliary switches.
+- [`examples/dashboard-bubble.yaml`](examples/dashboard-bubble.yaml) — nicer look, but
+  **requires two HACS frontend plugins** (one-click install):
+  - Bubble Card: [![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Clooos&repository=Bubble-Card&category=plugin)
+  - Pool Monitor Card: [![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=wilsto&repository=pool-monitor-card&category=plugin)
+
+  Pump mode buttons, auxiliary 1/2 controls (each in its own optional block), and a
+  full water quality panel.
+
+To use them: **Dashboard → ✏️ Edit → ⋮ → Raw configuration editor**, then paste the
+cards. Adjust entity IDs if you renamed your entities (note: default entity IDs
+depend on your Home Assistant language).
+
+---
+
 ## Important behavior
 
 ### Pump

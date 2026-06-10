@@ -51,9 +51,9 @@ STEP_USER_SCHEMA = vol.Schema(
 
 STEP_OPTIONS_SCHEMA = vol.Schema(
     {
-        vol.Optional(OPT_SCAN_INTERVAL, default=DEFAULT_SCAN_INTERVAL): vol.All(
-            vol.Coerce(int), vol.In(SCAN_INTERVAL_OPTIONS)
-        ),
+        vol.Optional(
+            OPT_SCAN_INTERVAL, default=str(DEFAULT_SCAN_INTERVAL)
+        ): vol.In([str(i) for i in SCAN_INTERVAL_OPTIONS]),
         vol.Optional(OPT_ENABLE_AUX1, default=DEFAULT_ENABLE_AUX1): bool,
         vol.Optional(OPT_AUX1_NAME, default=DEFAULT_AUX1_NAME): str,
         vol.Optional(OPT_AUX1_MODE, default=DEFAULT_AUX_MODE): vol.In(AUX_MODES),
@@ -108,7 +108,7 @@ class OklynConfigFlow(ConfigFlow, domain=DOMAIN):
                 title=self._data.get(CONF_NAME, DEFAULT_NAME),
                 data={CONF_API_TOKEN: self._data[CONF_API_TOKEN]},
                 options={
-                    OPT_SCAN_INTERVAL: user_input[OPT_SCAN_INTERVAL],
+                    OPT_SCAN_INTERVAL: int(user_input[OPT_SCAN_INTERVAL]),
                     OPT_ENABLE_AUX1: user_input[OPT_ENABLE_AUX1],
                     OPT_ENABLE_AUX2: user_input[OPT_ENABLE_AUX2],
                     OPT_AUX1_NAME: user_input[OPT_AUX1_NAME],
@@ -187,14 +187,15 @@ class OklynOptionsFlow(OptionsFlow):
         options = self._config_entry.options
 
         if user_input is not None:
+            user_input[OPT_SCAN_INTERVAL] = int(user_input[OPT_SCAN_INTERVAL])
             return self.async_create_entry(title="", data=user_input)
 
         schema = vol.Schema(
             {
                 vol.Optional(
                     OPT_SCAN_INTERVAL,
-                    default=options.get(OPT_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL),
-                ): vol.All(vol.Coerce(int), vol.In(SCAN_INTERVAL_OPTIONS)),
+                    default=str(options.get(OPT_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL)),
+                ): vol.In([str(i) for i in SCAN_INTERVAL_OPTIONS]),
                 vol.Optional(
                     OPT_ENABLE_AUX1,
                     default=options.get(OPT_ENABLE_AUX1, DEFAULT_ENABLE_AUX1),
