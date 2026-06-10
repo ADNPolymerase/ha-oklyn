@@ -1,0 +1,74 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Oklyn Pool Controller",
+        "description": "Enter your Oklyn API credentials.",
+        "data": {
+          "name": "Device name",
+          "api_token": "API token"
+        },
+        "data_description": {
+          "api_token": "Your Oklyn API token (X-Api-Token). Never share it."
+        }
+      },
+      "reauth_confirm": {
+        "title": "Re-authenticate Oklyn",
+        "description": "Your Oklyn API token is no longer valid. Enter a new one.",
+        "data": {
+          "api_token": "API token"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "This Oklyn device is already configured.",
+      "reauth_successful": "Re-authentication successful."
+    },
+    "error": {
+      "cannot_connect": "Unable to connect to the Oklyn API. Check your network.",
+      "invalid_auth": "Invalid API token.",
+      "invalid_response": "Unexpected response from the Oklyn API.",
+      "unknown": "An unexpected error occurred."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Oklyn options",
+        "data": {
+          "scan_interval": "Polling interval (seconds)",
+          "enable_aux1": "Enable Auxiliary 1",
+          "enable_aux2": "Enable Auxiliary 2",
+          "aux1_name": "Auxiliary 1 name",
+          "aux2_name": "Auxiliary 2 name"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "ph": {
+        "name": "pH"
+      },
+      "orp": {
+        "name": "RedOx"
+      },
+      "water_temperature": {
+        "name": "Water temperature"
+      },
+      "air_temperature": {
+        "name": "Air temperature"
+      }
+    },
+    "select": {
+      "pump_mode": {
+        "name": "Pump mode",
+        "state": {
+          "auto": "Auto",
+          "on": "On",
+          "off": "Off"
+        }
+      }
+    }
+  }
+}
