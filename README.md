@@ -1,6 +1,6 @@
 # Oklyn for Home Assistant
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/ADNPolymerase/hacs.oklyn)
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/ADNPolymerase/ha-oklyn)
 [![HA Version](https://img.shields.io/badge/Home%20Assistant-2024.1%2B-blue.svg)](https://www.home-assistant.io/)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow.svg?logo=buy-me-a-coffee)](https://buymeacoffee.com/adnpolymerase)
 
@@ -33,7 +33,7 @@ Custom integration for the **Oklyn** pool controller, published via HACS.
 
 1. In Home Assistant, open **HACS → Integrations**.
 2. Click the **⋮** menu → **Custom repositories**.
-3. Add `https://github.com/ADNPolymerase/hacs.oklyn` with category **Integration**.
+3. Add `https://github.com/ADNPolymerase/ha-oklyn` with category **Integration**.
 4. Search for **Oklyn** and click **Download**.
 5. Restart Home Assistant.
 6. Go to **Settings → Devices & Services → Add Integration** and search for **Oklyn**.
@@ -106,8 +106,8 @@ A dedicated Lovelace card is available — pH/RedOx with thresholds, temperature
 pump control, auxiliaries (switch or regulator), pH calibration offset.
 No dependency, full visual editor.
 
-[![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=ADNPolymerase&repository=hacs.oklyn-card&category=plugin)
-→ [ADNPolymerase/hacs.oklyn-card](https://github.com/ADNPolymerase/hacs.oklyn-card)
+[![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=ADNPolymerase&repository=oklyn-card&category=plugin)
+→ [ADNPolymerase/oklyn-card](https://github.com/ADNPolymerase/oklyn-card)
 
 ### YAML examples
 
@@ -213,4 +213,4 @@ in diagnostics exports (it appears as `**REDACTED**`).
 
 ## Contributing
 
-Issues and pull requests welcome at <https://github.com/ADNPolymerase/hacs.oklyn/issues>.
+Issues and pull requests welcome at <https://github.com/ADNPolymerase/ha-oklyn/issues>.

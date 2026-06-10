@@ -3,9 +3,9 @@
   "name": "Oklyn",
   "codeowners": ["@ADNPolymerase"],
   "config_flow": true,
-  "documentation": "https://github.com/ADNPolymerase/hacs.oklyn",
+  "documentation": "https://github.com/ADNPolymerase/ha-oklyn",
   "iot_class": "cloud_polling",
-  "issue_tracker": "https://github.com/ADNPolymerase/hacs.oklyn/issues",
+  "issue_tracker": "https://github.com/ADNPolymerase/ha-oklyn/issues",
   "requirements": [],
   "version": "0.2.3"
 }
