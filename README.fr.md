@@ -6,7 +6,7 @@
 
 <a href="https://buymeacoffee.com/adnpolymerase" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-orange.png" alt="Buy Me A Coffee" height="60"></a>
 
-Intégration custom pour le **boîtier piscine Oklyn**, publiée via HACS.
+Intégration custom pour le **boîtier piscine Oklyn**, https://www.oklyn.fr/ publiée via HACS.
 
 ---
 
@@ -90,7 +90,7 @@ Les modifications prennent effet immédiatement (l'intégration se recharge auto
 | `sensor.oklyn_redox` | Capteur | ORP / RedOx en mV |
 | `sensor.oklyn_water_temperature` | Capteur | Température eau en °C |
 | `sensor.oklyn_air_temperature` | Capteur | Température air en °C |
-| `select.oklyn_pump_mode` | Sélecteur | Commande pompe : auto / on / off |
+| `select.oklyn_pump_mode` | Choix | Commande pompe : auto / on / off |
 | `switch.oklyn_auxiliaire_1` | Interrupteur | Sortie auxiliaire 1 |
 | `switch.oklyn_auxiliaire_2` | Interrupteur | Sortie auxiliaire 2 |
 
@@ -100,7 +100,7 @@ Les modifications prennent effet immédiatement (l'intégration se recharge auto
 
 ### Pompe
 
-L'entité pompe reflète la **commande** envoyée à l'API Oklyn, pas nécessairement l'état électrique réel.
+L'entité pompe reflète la **commande** envoyée à l'API Oklyn, pas nécessairement l'état réel.
 
 - `pump` (champ API) = commande : `auto`, `on` ou `off`
 - `status` (champ API) = état réel actuel : `on` ou `off`
