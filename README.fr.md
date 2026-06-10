@@ -6,7 +6,7 @@
 
 <a href="https://buymeacoffee.com/adnpolymerase" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-orange.png" alt="Buy Me A Coffee" height="60"></a>
 
-Intégration custom pour le **boîtier piscine Oklyn**, publiée via HACS.
+Intégration custom pour le **boîtier piscine Oklyn**, https://www.oklyn.fr/ publiée via HACS.
 
 ---
 
