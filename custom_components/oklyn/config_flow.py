@@ -45,6 +45,15 @@ STEP_USER_SCHEMA = vol.Schema(
     }
 )
 
+STEP_OPTIONS_SCHEMA = vol.Schema(
+    {
+        vol.Optional(OPT_ENABLE_AUX1, default=DEFAULT_ENABLE_AUX1): bool,
+        vol.Optional(OPT_ENABLE_AUX2, default=DEFAULT_ENABLE_AUX2): bool,
+        vol.Optional(OPT_AUX1_NAME, default=DEFAULT_AUX1_NAME): str,
+        vol.Optional(OPT_AUX2_NAME, default=DEFAULT_AUX2_NAME): str,
+    }
+)
+
 REAUTH_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_API_TOKEN): str,
@@ -57,6 +66,9 @@ class OklynConfigFlow(ConfigFlow, domain=DOMAIN):
 
     VERSION = 1
 
+    def __init__(self) -> None:
+        self._data: dict[str, Any] = {}
+
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
     ) -> ConfigFlowResult:
@@ -68,16 +80,35 @@ class OklynConfigFlow(ConfigFlow, domain=DOMAIN):
 
             error = await self._validate_token(user_input[CONF_API_TOKEN])
             if not error:
-                return self.async_create_entry(
-                    title=user_input.get(CONF_NAME, DEFAULT_NAME),
-                    data={CONF_API_TOKEN: user_input[CONF_API_TOKEN]},
-                )
+                self._data = user_input
+                return await self.async_step_aux()
             errors["base"] = error
 
         return self.async_show_form(
             step_id="user",
             data_schema=STEP_USER_SCHEMA,
             errors=errors,
+        )
+
+    async def async_step_aux(
+        self, user_input: dict[str, Any] | None = None
+    ) -> ConfigFlowResult:
+        if user_input is not None:
+            return self.async_create_entry(
+                title=self._data.get(CONF_NAME, DEFAULT_NAME),
+                data={CONF_API_TOKEN: self._data[CONF_API_TOKEN]},
+                options={
+                    OPT_SCAN_INTERVAL: DEFAULT_SCAN_INTERVAL,
+                    OPT_ENABLE_AUX1: user_input[OPT_ENABLE_AUX1],
+                    OPT_ENABLE_AUX2: user_input[OPT_ENABLE_AUX2],
+                    OPT_AUX1_NAME: user_input[OPT_AUX1_NAME],
+                    OPT_AUX2_NAME: user_input[OPT_AUX2_NAME],
+                },
+            )
+
+        return self.async_show_form(
+            step_id="aux",
+            data_schema=STEP_OPTIONS_SCHEMA,
         )
 
     async def async_step_reauth(

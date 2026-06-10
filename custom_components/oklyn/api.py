@@ -167,8 +167,10 @@ class OklynApiClient:
                 if resp.status in (401, 403):
                     raise OklynAuthError(f"Authentication failed: HTTP {resp.status}")
 
-                if resp.status == 404:
-                    raise OklynEndpointUnavailable(f"Endpoint not found: {endpoint}")
+                if resp.status in (400, 404):
+                    raise OklynEndpointUnavailable(
+                        f"Endpoint not available (HTTP {resp.status}): {endpoint}"
+                    )
 
                 if resp.status in (408, 429, 500, 502, 503, 504):
                     raise OklynConnectionError(
