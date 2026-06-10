@@ -10,6 +10,9 @@ Custom integration for the **Oklyn** pool controller, published via HACS.
 
 > 🇫🇷 [Lire en français](README.fr.md)
 
+> 🎴 **Companion card available:** [Oklyn Card](https://github.com/ADNPolymerase/oklyn-card) — a dedicated Lovelace card with pH/RedOx thresholds, pump control, auxiliaries and pH calibration. No dependency, full visual editor.
+> [![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=ADNPolymerase&repository=oklyn-card&category=plugin)
+
 ---
 
 ## Features

@@ -8,6 +8,9 @@
 
 Intégration custom pour le **boîtier piscine Oklyn**, https://www.oklyn.fr/ publiée via HACS.
 
+> 🎴 **Carte dédiée disponible :** [Oklyn Card](https://github.com/ADNPolymerase/oklyn-card) — carte Lovelace avec seuils pH/RedOx, contrôle pompe, auxiliaires et correction pH. Aucune dépendance, éditeur visuel complet.
+> [![Ouvrir dans HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=ADNPolymerase&repository=oklyn-card&category=plugin)
+
 ---
 
 ## Fonctionnalités
