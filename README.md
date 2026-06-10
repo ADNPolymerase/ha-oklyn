@@ -61,6 +61,11 @@ During setup you will be asked for:
 
 The device ID is always `my` — you do not need to enter it.
 
+### How to get your API token
+
+Access to the API is secured by a private key managed in the Oklyn app:
+**Oklyn → My Account → API Key**
+
 ---
 
 ## Options

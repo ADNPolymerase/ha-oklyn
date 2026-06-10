@@ -59,6 +59,11 @@ Lors de la configuration, les champs suivants sont demandés :
 
 L'identifiant de l'appareil est toujours `my` — vous n'avez pas à le saisir.
 
+### Comment obtenir votre clef API
+
+L'accès à l'API est sécurisé par une clef privée gérée dans l'application Oklyn :
+**Oklyn → Mon Compte → Clef API**
+
 ---
 
 ## Options
