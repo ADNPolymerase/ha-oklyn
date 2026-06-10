@@ -1,0 +1,172 @@
+# Oklyn — Example dashboard with Bubble Card + Pool Monitor Card
+#
+# Requires (install via HACS → Frontend):
+#   - Bubble Card        https://github.com/Clooos/Bubble-Card
+#   - Pool Monitor Card  https://github.com/wilsto/pool-monitor-card
+#
+# Entity IDs below are the defaults created by the integration on a
+# French-language Home Assistant. On an English instance you will have
+# e.g. sensor.oklyn_water_temperature instead of sensor.oklyn_temperature_eau.
+# Adjust to match yours (Settings → Devices & Services → Oklyn → entities).
+#
+# Auxiliary 1 and 2 sections are independent blocks: keep the ones you
+# enabled in the integration options, delete (or leave commented) the others.
+
+# ----------------------------------------------------------------------
+# Pump — separator + mode control (auto / on / off)
+# ----------------------------------------------------------------------
+- type: custom:bubble-card
+  card_type: separator
+  name: Pompe
+  icon: mdi:pump
+
+- type: custom:bubble-card
+  card_type: button
+  button_type: state
+  entity: select.oklyn_mode_pompe
+  name: Mode pompe
+  show_state: true
+  icon: mdi:pump
+  sub_button:
+    - name: AUTO
+      icon: mdi:fan-clock
+      show_name: true
+      show_background: true
+      tap_action:
+        action: perform-action
+        perform_action: select.select_option
+        target:
+          entity_id: select.oklyn_mode_pompe
+        data:
+          option: auto
+    - name: "ON"
+      icon: mdi:play
+      show_name: true
+      show_background: true
+      tap_action:
+        action: perform-action
+        perform_action: select.select_option
+        target:
+          entity_id: select.oklyn_mode_pompe
+        data:
+          option: "on"
+    - name: "OFF"
+      icon: mdi:stop
+      show_name: true
+      show_background: true
+      tap_action:
+        action: perform-action
+        perform_action: select.select_option
+        target:
+          entity_id: select.oklyn_mode_pompe
+        data:
+          option: "off"
+
+# ----------------------------------------------------------------------
+# Auxiliary 1 (e.g. pool light) — delete this block if aux 1 is disabled
+# ----------------------------------------------------------------------
+- type: custom:bubble-card
+  card_type: separator
+  name: 💡 Auxiliaire 1
+  icon: mdi:lightbulb-outline
+
+- type: custom:bubble-card
+  card_type: button
+  button_type: switch
+  entity: switch.oklyn_auxiliaire_1
+  name: Auxiliaire 1
+  show_state: true
+  icon: mdi:lightbulb
+  sub_button:
+    - name: "ON"
+      icon: mdi:lightbulb-on
+      show_name: true
+      show_background: true
+      tap_action:
+        action: perform-action
+        perform_action: switch.turn_on
+        target:
+          entity_id: switch.oklyn_auxiliaire_1
+    - name: "OFF"
+      icon: mdi:lightbulb-off
+      show_name: true
+      show_background: true
+      tap_action:
+        action: perform-action
+        perform_action: switch.turn_off
+        target:
+          entity_id: switch.oklyn_auxiliaire_1
+
+# ----------------------------------------------------------------------
+# Auxiliary 2 — uncomment this block if aux 2 is enabled
+# ----------------------------------------------------------------------
+# - type: custom:bubble-card
+#   card_type: separator
+#   name: 🔌 Auxiliaire 2
+#   icon: mdi:power-socket-eu
+#
+# - type: custom:bubble-card
+#   card_type: button
+#   button_type: switch
+#   entity: switch.oklyn_auxiliaire_2
+#   name: Auxiliaire 2
+#   show_state: true
+#   icon: mdi:power-socket-eu
+#   sub_button:
+#     - name: "ON"
+#       icon: mdi:power-plug
+#       show_name: true
+#       show_background: true
+#       tap_action:
+#         action: perform-action
+#         perform_action: switch.turn_on
+#         target:
+#           entity_id: switch.oklyn_auxiliaire_2
+#     - name: "OFF"
+#       icon: mdi:power-plug-off
+#       show_name: true
+#       show_background: true
+#       tap_action:
+#         action: perform-action
+#         perform_action: switch.turn_off
+#         target:
+#           entity_id: switch.oklyn_auxiliaire_2
+
+# ----------------------------------------------------------------------
+# Water quality — Pool Monitor Card
+# ----------------------------------------------------------------------
+- type: custom:pool-monitor-card
+  display:
+    compact: false
+    show_names: true
+    show_labels: false
+    show_last_updated: true
+    show_icons: true
+    show_units: true
+    gradient: true
+    language: fr
+  sensors:
+    temperature:
+      - entity: sensor.oklyn_temperature_air
+        name: AIR
+        setpoint: 30
+        step: 5
+      - entity: sensor.oklyn_temperature_eau
+        name: PISCINE
+        setpoint: 27
+        step: 3
+    ph:
+      - entity: sensor.oklyn_ph
+        setpoint: 7.2
+        step: 0.2
+    orp:
+      - entity: sensor.oklyn_redox
+        name: Redox Chlore
+        setpoint: 650
+  colors:
+    low: "#fdcb6e"
+    warn: "#e17055"
+    normal: "#00b894"
+    cool: "#00BFFF"
+    marker: "#000000"
+    hi_low: "#00000099"

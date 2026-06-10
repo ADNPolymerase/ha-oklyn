@@ -1,0 +1,109 @@
+# Oklyn — Example dashboard view (sections layout, HA 2024.3+)
+#
+# Usage: Dashboard → Edit → Raw configuration editor → paste this view
+# into your `views:` list, or create a new dashboard and replace its content.
+#
+# Entity IDs below are the defaults created by the integration.
+# Adjust them if you renamed your entities
+# (e.g. switch.oklyn_auxiliaire_1 may differ if you customized the aux name).
+
+views:
+  - title: Piscine
+    path: piscine
+    icon: mdi:pool
+    type: sections
+    max_columns: 3
+    sections:
+      - type: grid
+        cards:
+          - type: heading
+            heading: Qualité de l'eau
+            icon: mdi:water-check
+          - type: tile
+            entity: sensor.oklyn_ph
+            name: pH
+            icon: mdi:ph
+            color: teal
+          - type: tile
+            entity: sensor.oklyn_redox
+            name: RedOx
+            icon: mdi:flash
+            color: amber
+          - type: gauge
+            entity: sensor.oklyn_ph
+            name: pH
+            min: 6
+            max: 8.5
+            needle: true
+            segments:
+              - from: 6
+                color: "#e53935"
+              - from: 7
+                color: "#43a047"
+              - from: 7.8
+                color: "#e53935"
+          - type: gauge
+            entity: sensor.oklyn_redox
+            name: RedOx (mV)
+            min: 0
+            max: 1000
+            needle: true
+            segments:
+              - from: 0
+                color: "#e53935"
+              - from: 550
+                color: "#43a047"
+              - from: 800
+                color: "#fb8c00"
+
+      - type: grid
+        cards:
+          - type: heading
+            heading: Températures
+            icon: mdi:thermometer
+          - type: tile
+            entity: sensor.oklyn_temperature_eau
+            name: Eau
+            icon: mdi:coolant-temperature
+            color: blue
+          - type: tile
+            entity: sensor.oklyn_temperature_air
+            name: Air
+            icon: mdi:weather-partly-cloudy
+            color: orange
+          - type: history-graph
+            title: Historique 24h
+            hours_to_show: 24
+            entities:
+              - entity: sensor.oklyn_temperature_eau
+                name: Eau
+              - entity: sensor.oklyn_temperature_air
+                name: Air
+
+      - type: grid
+        cards:
+          - type: heading
+            heading: Équipements
+            icon: mdi:pump
+          - type: tile
+            entity: select.oklyn_mode_pompe
+            name: Mode pompe
+            icon: mdi:pump
+            features:
+              - type: select-options
+          - type: tile
+            entity: switch.oklyn_auxiliaire_1
+            name: Auxiliaire 1
+            icon: mdi:lightbulb
+            color: yellow
+          # Uncomment if Auxiliary 2 is enabled on your controller:
+          # - type: tile
+          #   entity: switch.oklyn_auxiliaire_2
+          #   name: Auxiliaire 2
+          #   icon: mdi:power-socket-eu
+          - type: history-graph
+            title: Activité pompe 24h
+            hours_to_show: 24
+            entities:
+              - entity: select.oklyn_mode_pompe
+                name: Pompe
