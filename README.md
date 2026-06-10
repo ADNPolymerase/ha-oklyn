@@ -8,6 +8,8 @@
 
 Custom integration for the **Oklyn** pool controller, published via HACS.
 
+> 🇫🇷 [Lire en français](README.fr.md)
+
 ---
 
 ## Features
