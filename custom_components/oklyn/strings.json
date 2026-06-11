@@ -22,7 +22,8 @@
           "aux1_name": "Auxiliary 1 name",
           "aux2_name": "Auxiliary 2 name",
           "aux1_mode": "Auxiliary 1 type (switch = controllable, regulator = read-only)",
-          "aux2_mode": "Auxiliary 2 type (switch = controllable, regulator = read-only)"
+          "aux2_mode": "Auxiliary 2 type (switch = controllable, regulator = read-only)",
+          "enable_salt": "Enable salt sensor"
         }
       },
       "reauth_confirm": {
@@ -55,7 +56,8 @@
           "aux1_name": "Auxiliary 1 name",
           "aux2_name": "Auxiliary 2 name",
           "aux1_mode": "Auxiliary 1 type (switch = controllable, regulator = read-only)",
-          "aux2_mode": "Auxiliary 2 type (switch = controllable, regulator = read-only)"
+          "aux2_mode": "Auxiliary 2 type (switch = controllable, regulator = read-only)",
+          "enable_salt": "Enable salt sensor"
         }
       }
     }

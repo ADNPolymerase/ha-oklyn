@@ -15,6 +15,7 @@ CONF_API_TOKEN = "api_token"
 OPT_SCAN_INTERVAL = "scan_interval"
 OPT_ENABLE_AUX1 = "enable_aux1"
 OPT_ENABLE_AUX2 = "enable_aux2"
+OPT_ENABLE_SALT = "enable_salt"
 OPT_AUX1_NAME = "aux1_name"
 OPT_AUX2_NAME = "aux2_name"
 OPT_AUX1_MODE = "aux1_mode"
@@ -27,6 +28,7 @@ DEFAULT_AUX_MODE = AUX_MODE_SWITCH
 
 DEFAULT_ENABLE_AUX1 = True
 DEFAULT_ENABLE_AUX2 = True
+DEFAULT_ENABLE_SALT = False
 DEFAULT_AUX1_NAME = "Auxiliaire 1"
 DEFAULT_AUX2_NAME = "Auxiliaire 2"
 

@@ -22,10 +22,12 @@ from .api import (
     OklynPumpState,
 )
 from .const import (
+    DEFAULT_ENABLE_SALT,
     DEFAULT_SCAN_INTERVAL,
     DOMAIN,
     OPT_ENABLE_AUX1,
     OPT_ENABLE_AUX2,
+    OPT_ENABLE_SALT,
     OPT_SCAN_INTERVAL,
 )
 
@@ -59,6 +61,7 @@ class OklynDataUpdateCoordinator(DataUpdateCoordinator[OklynData]):
     async def _async_update_data(self) -> OklynData:
         enable_aux1 = self._entry.options.get(OPT_ENABLE_AUX1, True)
         enable_aux2 = self._entry.options.get(OPT_ENABLE_AUX2, True)
+        enable_salt = self._entry.options.get(OPT_ENABLE_SALT, DEFAULT_ENABLE_SALT)
         endpoint_errors: dict[str, str] = {}
 
         async def safe_fetch(coro, key: str):
@@ -81,7 +84,7 @@ class OklynDataUpdateCoordinator(DataUpdateCoordinator[OklynData]):
             safe_fetch(self._client.async_get_measure("orp"), "orp"),
             safe_fetch(self._client.async_get_measure("water"), "water"),
             safe_fetch(self._client.async_get_measure("air"), "air"),
-            safe_fetch(self._client.async_get_measure("salt"), "salt"),
+            safe_fetch(self._client.async_get_measure("salt"), "salt") if enable_salt else _noop(),
             safe_fetch(self._client.async_get_pump(), "pump"),
             safe_fetch(self._client.async_get_aux(1), "aux1") if enable_aux1 else _noop(),
             safe_fetch(self._client.async_get_aux(2), "aux2") if enable_aux2 else _noop(),

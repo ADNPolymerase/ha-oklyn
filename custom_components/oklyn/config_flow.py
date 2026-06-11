@@ -26,6 +26,7 @@ from .const import (
     DEFAULT_AUX_MODE,
     DEFAULT_ENABLE_AUX1,
     DEFAULT_ENABLE_AUX2,
+    DEFAULT_ENABLE_SALT,
     DEFAULT_NAME,
     DEFAULT_SCAN_INTERVAL,
     DEVICE_ID,
@@ -36,6 +37,7 @@ from .const import (
     OPT_AUX2_NAME,
     OPT_ENABLE_AUX1,
     OPT_ENABLE_AUX2,
+    OPT_ENABLE_SALT,
     OPT_SCAN_INTERVAL,
     SCAN_INTERVAL_OPTIONS,
 )
@@ -60,6 +62,7 @@ STEP_OPTIONS_SCHEMA = vol.Schema(
         vol.Optional(OPT_ENABLE_AUX2, default=DEFAULT_ENABLE_AUX2): bool,
         vol.Optional(OPT_AUX2_NAME, default=DEFAULT_AUX2_NAME): str,
         vol.Optional(OPT_AUX2_MODE, default=DEFAULT_AUX_MODE): vol.In(AUX_MODES),
+        vol.Optional(OPT_ENABLE_SALT, default=DEFAULT_ENABLE_SALT): bool,
     }
 )
 
@@ -115,6 +118,7 @@ class OklynConfigFlow(ConfigFlow, domain=DOMAIN):
                     OPT_AUX2_NAME: user_input[OPT_AUX2_NAME],
                     OPT_AUX1_MODE: user_input[OPT_AUX1_MODE],
                     OPT_AUX2_MODE: user_input[OPT_AUX2_MODE],
+                    OPT_ENABLE_SALT: user_input[OPT_ENABLE_SALT],
                 },
             )
 
@@ -220,6 +224,10 @@ class OklynOptionsFlow(OptionsFlow):
                     OPT_AUX2_MODE,
                     default=options.get(OPT_AUX2_MODE, DEFAULT_AUX_MODE),
                 ): vol.In(AUX_MODES),
+                vol.Optional(
+                    OPT_ENABLE_SALT,
+                    default=options.get(OPT_ENABLE_SALT, DEFAULT_ENABLE_SALT),
+                ): bool,
             }
         )
 

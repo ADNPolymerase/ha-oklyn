@@ -22,7 +22,8 @@
           "aux1_name": "Nom de l'auxiliaire 1",
           "aux2_name": "Nom de l'auxiliaire 2",
           "aux1_mode": "Type auxiliaire 1 (switch = commandable, regulator = lecture seule)",
-          "aux2_mode": "Type auxiliaire 2 (switch = commandable, regulator = lecture seule)"
+          "aux2_mode": "Type auxiliaire 2 (switch = commandable, regulator = lecture seule)",
+          "enable_salt": "Activer le capteur sel"
         }
       },
       "reauth_confirm": {
@@ -55,7 +56,8 @@
           "aux1_name": "Nom de l'auxiliaire 1",
           "aux2_name": "Nom de l'auxiliaire 2",
           "aux1_mode": "Type auxiliaire 1 (switch = commandable, regulator = lecture seule)",
-          "aux2_mode": "Type auxiliaire 2 (switch = commandable, regulator = lecture seule)"
+          "aux2_mode": "Type auxiliaire 2 (switch = commandable, regulator = lecture seule)",
+          "enable_salt": "Activer le capteur sel"
         }
       }
     }
