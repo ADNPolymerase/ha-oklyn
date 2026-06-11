@@ -57,6 +57,13 @@ SENSOR_DESCRIPTIONS: tuple[OklynSensorEntityDescription, ...] = (
         device_class=SensorDeviceClass.TEMPERATURE,
         state_class=SensorStateClass.MEASUREMENT,
     ),
+    OklynSensorEntityDescription(
+        key=f"oklyn_{DEVICE_ID}_salt",
+        translation_key="salt",
+        data_key="salt",
+        native_unit_of_measurement="g/L",
+        state_class=SensorStateClass.MEASUREMENT,
+    ),
 )
 
 

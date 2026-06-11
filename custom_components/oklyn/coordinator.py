@@ -81,13 +81,14 @@ class OklynDataUpdateCoordinator(DataUpdateCoordinator[OklynData]):
             safe_fetch(self._client.async_get_measure("orp"), "orp"),
             safe_fetch(self._client.async_get_measure("water"), "water"),
             safe_fetch(self._client.async_get_measure("air"), "air"),
+            safe_fetch(self._client.async_get_measure("salt"), "salt"),
             safe_fetch(self._client.async_get_pump(), "pump"),
             safe_fetch(self._client.async_get_aux(1), "aux1") if enable_aux1 else _noop(),
             safe_fetch(self._client.async_get_aux(2), "aux2") if enable_aux2 else _noop(),
             return_exceptions=False,
         )
 
-        ph, orp, water, air, pump, aux1, aux2 = results
+        ph, orp, water, air, salt, pump, aux1, aux2 = results
 
         # If ALL primary endpoints failed, raise UpdateFailed
         if pump is None and ph is None and orp is None and water is None and air is None:
@@ -106,6 +107,7 @@ class OklynDataUpdateCoordinator(DataUpdateCoordinator[OklynData]):
             orp=orp,
             water=water,
             air=air,
+            salt=salt,
             pump=pump,
             aux1=aux1,
             aux2=aux2,

@@ -73,6 +73,9 @@
       },
       "air_temperature": {
         "name": "Air temperature"
+      },
+      "salt": {
+        "name": "Salt"
       }
     },
     "select": {

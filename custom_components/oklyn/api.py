@@ -117,6 +117,7 @@ class OklynData:
     orp: OklynMeasure | None
     water: OklynMeasure | None
     air: OklynMeasure | None
+    salt: OklynMeasure | None
     pump: OklynPumpState | None
     aux1: OklynAuxState | None
     aux2: OklynAuxState | None
@@ -210,7 +211,7 @@ class OklynApiClient:
 
     async def async_get_measure(
         self,
-        measure_type: Literal["ph", "orp", "water", "air"],
+        measure_type: Literal["ph", "orp", "water", "air", "salt"],
     ) -> OklynMeasure:
         data = await self._async_request(
             "GET", f"/device/{DEVICE_ID}/data/{measure_type}"

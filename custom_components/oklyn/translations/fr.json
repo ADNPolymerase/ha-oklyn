@@ -73,6 +73,9 @@
       },
       "air_temperature": {
         "name": "Température air"
+      },
+      "salt": {
+        "name": "Sel"
       }
     },
     "select": {
