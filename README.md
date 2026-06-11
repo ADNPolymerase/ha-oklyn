@@ -101,6 +101,12 @@ Changes take effect immediately (integration reloads automatically).
 
 ---
 
+## Screenshot
+
+![Oklyn Card](docs/oklyn-card.png)
+
+---
+
 ## Example dashboard
 
 ### Oklyn Card (recommended)

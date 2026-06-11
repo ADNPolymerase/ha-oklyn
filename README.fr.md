@@ -99,6 +99,12 @@ Les modifications prennent effet immédiatement (l'intégration se recharge auto
 
 ---
 
+## Capture d'écran
+
+![Oklyn Card](docs/oklyn-card.png)
+
+---
+
 ## Exemple de tableau de bord
 
 ### Oklyn Card (recommandé)
