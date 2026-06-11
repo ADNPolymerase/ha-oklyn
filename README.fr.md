@@ -4,7 +4,7 @@
 [![GitHub Release](https://badgen.net/github/release/ADNPolymerase/ha-oklyn)](https://github.com/ADNPolymerase/ha-oklyn/releases)
 [![Hassfest](https://github.com/ADNPolymerase/ha-oklyn/actions/workflows/hassfest.yml/badge.svg)](https://github.com/ADNPolymerase/ha-oklyn/actions/workflows/hassfest.yml)
 [![HA Version](https://img.shields.io/badge/Home%20Assistant-2024.1%2B-blue.svg)](https://www.home-assistant.io/)
-[![License: MIT](https://badgen.net/github/license/ADNPolymerase/ha-oklyn)](https://github.com/ADNPolymerase/ha-oklyn/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ADNPolymerase/ha-oklyn/blob/main/LICENSE)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow.svg?logo=buy-me-a-coffee)](https://buymeacoffee.com/adnpolymerase)
 
 <a href="https://buymeacoffee.com/adnpolymerase" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-orange.png" alt="Buy Me A Coffee" height="60"></a>
