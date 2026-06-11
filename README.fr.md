@@ -78,11 +78,20 @@ Après la configuration, allez dans **Paramètres → Appareils et services → 
 
 | Option | Défaut | Description |
 |---|---|---|
+| Modèle Oklyn | Filtration + Analyse | Votre modèle de boîtier — détermine les capteurs créés (voir ci-dessous) |
 | Intervalle de scrutation | 60 s | Fréquence d'interrogation de l'API (30 / 60 / 120 / 300 s) |
 | Activer l'auxiliaire 1 | Oui | Créer l'entité interrupteur Aux 1 |
 | Activer l'auxiliaire 2 | Oui | Créer l'entité interrupteur Aux 2 |
 | Nom de l'auxiliaire 1 | Auxiliaire 1 | Nom personnalisé pour le switch Aux 1 |
 | Nom de l'auxiliaire 2 | Auxiliaire 2 | Nom personnalisé pour le switch Aux 2 |
+
+Les trois modèles correspondent à la [gamme officielle Oklyn](https://www.oklyn.fr/assistant-piscine-connecte/) :
+
+| Modèle | Capteurs créés |
+|---|---|
+| Filtration | Températures, pompe, auxiliaires |
+| Filtration + Analyse | + pH, RedOx |
+| Filtration + Analyse + Sel | + Sel (g/L) |
 
 Les modifications prennent effet immédiatement (l'intégration se recharge automatiquement).
 
@@ -92,10 +101,11 @@ Les modifications prennent effet immédiatement (l'intégration se recharge auto
 
 | Entité | Type | Description |
 |---|---|---|
-| `sensor.oklyn_ph` | Capteur | Valeur pH |
-| `sensor.oklyn_redox` | Capteur | ORP / RedOx en mV |
+| `sensor.oklyn_ph` | Capteur | Valeur pH (modèles Analyse) |
+| `sensor.oklyn_redox` | Capteur | ORP / RedOx en mV (modèles Analyse) |
 | `sensor.oklyn_water_temperature` | Capteur | Température eau en °C |
 | `sensor.oklyn_air_temperature` | Capteur | Température air en °C |
+| `sensor.oklyn_salt` | Capteur | Taux de sel en g/L (modèle Sel uniquement) |
 | `select.oklyn_pump_mode` | Choix | Commande pompe : auto / on / off |
 | `switch.oklyn_auxiliaire_1` | Interrupteur | Sortie auxiliaire 1 |
 | `switch.oklyn_auxiliaire_2` | Interrupteur | Sortie auxiliaire 2 |

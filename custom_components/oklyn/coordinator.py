@@ -22,13 +22,14 @@ from .api import (
     OklynPumpState,
 )
 from .const import (
-    DEFAULT_ENABLE_SALT,
     DEFAULT_SCAN_INTERVAL,
     DOMAIN,
+    MODEL_ANALYSIS,
+    MODEL_ANALYSIS_SALT,
     OPT_ENABLE_AUX1,
     OPT_ENABLE_AUX2,
-    OPT_ENABLE_SALT,
     OPT_SCAN_INTERVAL,
+    resolve_model,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -61,7 +62,9 @@ class OklynDataUpdateCoordinator(DataUpdateCoordinator[OklynData]):
     async def _async_update_data(self) -> OklynData:
         enable_aux1 = self._entry.options.get(OPT_ENABLE_AUX1, True)
         enable_aux2 = self._entry.options.get(OPT_ENABLE_AUX2, True)
-        enable_salt = self._entry.options.get(OPT_ENABLE_SALT, DEFAULT_ENABLE_SALT)
+        model = resolve_model(self._entry.options)
+        enable_analysis = model in (MODEL_ANALYSIS, MODEL_ANALYSIS_SALT)
+        enable_salt = model == MODEL_ANALYSIS_SALT
         endpoint_errors: dict[str, str] = {}
 
         async def safe_fetch(coro, key: str):
@@ -80,8 +83,8 @@ class OklynDataUpdateCoordinator(DataUpdateCoordinator[OklynData]):
 
         # Run all fetches in parallel; auth errors propagate immediately
         results = await asyncio.gather(
-            safe_fetch(self._client.async_get_measure("ph"), "ph"),
-            safe_fetch(self._client.async_get_measure("orp"), "orp"),
+            safe_fetch(self._client.async_get_measure("ph"), "ph") if enable_analysis else _noop(),
+            safe_fetch(self._client.async_get_measure("orp"), "orp") if enable_analysis else _noop(),
             safe_fetch(self._client.async_get_measure("water"), "water"),
             safe_fetch(self._client.async_get_measure("air"), "air"),
             safe_fetch(self._client.async_get_measure("salt"), "salt") if enable_salt else _noop(),

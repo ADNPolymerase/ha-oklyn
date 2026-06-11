@@ -16,7 +16,13 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .api import OklynData, OklynMeasure
-from .const import DEFAULT_ENABLE_SALT, DEVICE_ID, DOMAIN, OPT_ENABLE_SALT
+from .const import (
+    DEVICE_ID,
+    DOMAIN,
+    MODEL_ANALYSIS,
+    MODEL_ANALYSIS_SALT,
+    resolve_model,
+)
 from .coordinator import OklynDataUpdateCoordinator
 from .entity import OklynEntity
 
@@ -73,11 +79,16 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     coordinator: OklynDataUpdateCoordinator = hass.data[DOMAIN][entry.entry_id]
-    enable_salt = entry.options.get(OPT_ENABLE_SALT, DEFAULT_ENABLE_SALT)
+    model = resolve_model(entry.options)
+    enabled_keys = {"water", "air"}
+    if model in (MODEL_ANALYSIS, MODEL_ANALYSIS_SALT):
+        enabled_keys |= {"ph", "orp"}
+    if model == MODEL_ANALYSIS_SALT:
+        enabled_keys.add("salt")
     async_add_entities(
         OklynSensor(coordinator, entry, description)
         for description in SENSOR_DESCRIPTIONS
-        if description.data_key != "salt" or enable_salt
+        if description.data_key in enabled_keys
     )
 
 

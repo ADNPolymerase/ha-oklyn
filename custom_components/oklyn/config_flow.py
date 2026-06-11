@@ -16,6 +16,11 @@ from homeassistant.config_entries import (
 from homeassistant.const import CONF_NAME
 from homeassistant.core import callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
+from homeassistant.helpers.selector import (
+    SelectSelector,
+    SelectSelectorConfig,
+    SelectSelectorMode,
+)
 
 from .api import OklynApiClient, OklynAuthError, OklynConnectionError, OklynResponseError
 from .const import (
@@ -26,20 +31,22 @@ from .const import (
     DEFAULT_AUX_MODE,
     DEFAULT_ENABLE_AUX1,
     DEFAULT_ENABLE_AUX2,
-    DEFAULT_ENABLE_SALT,
+    DEFAULT_MODEL,
     DEFAULT_NAME,
     DEFAULT_SCAN_INTERVAL,
     DEVICE_ID,
     DOMAIN,
+    OKLYN_MODELS,
     OPT_AUX1_MODE,
     OPT_AUX1_NAME,
     OPT_AUX2_MODE,
     OPT_AUX2_NAME,
     OPT_ENABLE_AUX1,
     OPT_ENABLE_AUX2,
-    OPT_ENABLE_SALT,
+    OPT_MODEL,
     OPT_SCAN_INTERVAL,
     SCAN_INTERVAL_OPTIONS,
+    resolve_model,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -51,8 +58,17 @@ STEP_USER_SCHEMA = vol.Schema(
     }
 )
 
+MODEL_SELECTOR = SelectSelector(
+    SelectSelectorConfig(
+        options=OKLYN_MODELS,
+        mode=SelectSelectorMode.DROPDOWN,
+        translation_key="oklyn_model",
+    )
+)
+
 STEP_OPTIONS_SCHEMA = vol.Schema(
     {
+        vol.Optional(OPT_MODEL, default=DEFAULT_MODEL): MODEL_SELECTOR,
         vol.Optional(
             OPT_SCAN_INTERVAL, default=str(DEFAULT_SCAN_INTERVAL)
         ): vol.In([str(i) for i in SCAN_INTERVAL_OPTIONS]),
@@ -62,7 +78,6 @@ STEP_OPTIONS_SCHEMA = vol.Schema(
         vol.Optional(OPT_ENABLE_AUX2, default=DEFAULT_ENABLE_AUX2): bool,
         vol.Optional(OPT_AUX2_NAME, default=DEFAULT_AUX2_NAME): str,
         vol.Optional(OPT_AUX2_MODE, default=DEFAULT_AUX_MODE): vol.In(AUX_MODES),
-        vol.Optional(OPT_ENABLE_SALT, default=DEFAULT_ENABLE_SALT): bool,
     }
 )
 
@@ -111,6 +126,7 @@ class OklynConfigFlow(ConfigFlow, domain=DOMAIN):
                 title=self._data.get(CONF_NAME, DEFAULT_NAME),
                 data={CONF_API_TOKEN: self._data[CONF_API_TOKEN]},
                 options={
+                    OPT_MODEL: user_input[OPT_MODEL],
                     OPT_SCAN_INTERVAL: int(user_input[OPT_SCAN_INTERVAL]),
                     OPT_ENABLE_AUX1: user_input[OPT_ENABLE_AUX1],
                     OPT_ENABLE_AUX2: user_input[OPT_ENABLE_AUX2],
@@ -118,7 +134,6 @@ class OklynConfigFlow(ConfigFlow, domain=DOMAIN):
                     OPT_AUX2_NAME: user_input[OPT_AUX2_NAME],
                     OPT_AUX1_MODE: user_input[OPT_AUX1_MODE],
                     OPT_AUX2_MODE: user_input[OPT_AUX2_MODE],
-                    OPT_ENABLE_SALT: user_input[OPT_ENABLE_SALT],
                 },
             )
 
@@ -197,6 +212,10 @@ class OklynOptionsFlow(OptionsFlow):
         schema = vol.Schema(
             {
                 vol.Optional(
+                    OPT_MODEL,
+                    default=resolve_model(options),
+                ): MODEL_SELECTOR,
+                vol.Optional(
                     OPT_SCAN_INTERVAL,
                     default=str(options.get(OPT_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL)),
                 ): vol.In([str(i) for i in SCAN_INTERVAL_OPTIONS]),
@@ -224,10 +243,6 @@ class OklynOptionsFlow(OptionsFlow):
                     OPT_AUX2_MODE,
                     default=options.get(OPT_AUX2_MODE, DEFAULT_AUX_MODE),
                 ): vol.In(AUX_MODES),
-                vol.Optional(
-                    OPT_ENABLE_SALT,
-                    default=options.get(OPT_ENABLE_SALT, DEFAULT_ENABLE_SALT),
-                ): bool,
             }
         )
 

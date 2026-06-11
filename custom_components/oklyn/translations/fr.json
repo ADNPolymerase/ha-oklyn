@@ -16,14 +16,14 @@
         "title": "Options de l'intégration",
         "description": "Configurez la fréquence d'interrogation et les sorties auxiliaires de votre boîtier Oklyn.",
         "data": {
+          "model": "Modèle Oklyn",
           "scan_interval": "Intervalle d'interrogation (secondes)",
           "enable_aux1": "Activer l'auxiliaire 1",
           "enable_aux2": "Activer l'auxiliaire 2",
           "aux1_name": "Nom de l'auxiliaire 1",
           "aux2_name": "Nom de l'auxiliaire 2",
           "aux1_mode": "Type auxiliaire 1 (switch = commandable, regulator = lecture seule)",
-          "aux2_mode": "Type auxiliaire 2 (switch = commandable, regulator = lecture seule)",
-          "enable_salt": "Activer le capteur sel"
+          "aux2_mode": "Type auxiliaire 2 (switch = commandable, regulator = lecture seule)"
         }
       },
       "reauth_confirm": {
@@ -50,15 +50,24 @@
       "init": {
         "title": "Options Oklyn",
         "data": {
+          "model": "Modèle Oklyn",
           "scan_interval": "Intervalle de scrutation (secondes)",
           "enable_aux1": "Activer l'auxiliaire 1",
           "enable_aux2": "Activer l'auxiliaire 2",
           "aux1_name": "Nom de l'auxiliaire 1",
           "aux2_name": "Nom de l'auxiliaire 2",
           "aux1_mode": "Type auxiliaire 1 (switch = commandable, regulator = lecture seule)",
-          "aux2_mode": "Type auxiliaire 2 (switch = commandable, regulator = lecture seule)",
-          "enable_salt": "Activer le capteur sel"
+          "aux2_mode": "Type auxiliaire 2 (switch = commandable, regulator = lecture seule)"
         }
+      }
+    }
+  },
+  "selector": {
+    "oklyn_model": {
+      "options": {
+        "filtration": "Filtration (température seule)",
+        "analysis": "Filtration + Analyse (pH, RedOx)",
+        "analysis_salt": "Filtration + Analyse + Sel"
       }
     }
   },

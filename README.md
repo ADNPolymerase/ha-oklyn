@@ -80,11 +80,20 @@ After setup, go to **Settings → Devices & Services → Oklyn → Configure** t
 
 | Option | Default | Description |
 |---|---|---|
+| Oklyn model | Filtration + Analysis | Your controller model — determines which sensors are created (see below) |
 | Polling interval | 60 s | How often the API is queried (30 / 60 / 120 / 300 s) |
 | Enable Auxiliary 1 | Yes | Create the Aux 1 switch entity |
 | Enable Auxiliary 2 | Yes | Create the Aux 2 switch entity |
 | Auxiliary 1 name | Auxiliaire 1 | Custom name for the Aux 1 switch |
 | Auxiliary 2 name | Auxiliaire 2 | Custom name for the Aux 2 switch |
+
+The three Oklyn models match the [official lineup](https://www.oklyn.fr/assistant-piscine-connecte/):
+
+| Model | Sensors created |
+|---|---|
+| Filtration | Temperatures, pump, auxiliaries |
+| Filtration + Analysis | + pH, RedOx |
+| Filtration + Analysis + Salt | + Salt (g/L) |
 
 Changes take effect immediately (integration reloads automatically).
 
@@ -94,10 +103,11 @@ Changes take effect immediately (integration reloads automatically).
 
 | Entity | Type | Description |
 |---|---|---|
-| `sensor.oklyn_ph` | Sensor | pH value |
-| `sensor.oklyn_redox` | Sensor | ORP / RedOx in mV |
+| `sensor.oklyn_ph` | Sensor | pH value (Analysis models) |
+| `sensor.oklyn_redox` | Sensor | ORP / RedOx in mV (Analysis models) |
 | `sensor.oklyn_water_temperature` | Sensor | Water temperature in °C |
 | `sensor.oklyn_air_temperature` | Sensor | Air temperature in °C |
+| `sensor.oklyn_salt` | Sensor | Salt level in g/L (Salt model only) |
 | `select.oklyn_pump_mode` | Select | Pump command: auto / on / off |
 | `switch.oklyn_auxiliaire_1` | Switch | Auxiliary output 1 |
 | `switch.oklyn_auxiliaire_2` | Switch | Auxiliary output 2 |

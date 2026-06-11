@@ -15,11 +15,18 @@ CONF_API_TOKEN = "api_token"
 OPT_SCAN_INTERVAL = "scan_interval"
 OPT_ENABLE_AUX1 = "enable_aux1"
 OPT_ENABLE_AUX2 = "enable_aux2"
-OPT_ENABLE_SALT = "enable_salt"
+OPT_ENABLE_SALT = "enable_salt"  # legacy (v0.2.5-beta.1), migrated to OPT_MODEL
+OPT_MODEL = "model"
 OPT_AUX1_NAME = "aux1_name"
 OPT_AUX2_NAME = "aux2_name"
 OPT_AUX1_MODE = "aux1_mode"
 OPT_AUX2_MODE = "aux2_mode"
+
+MODEL_FILTRATION = "filtration"
+MODEL_ANALYSIS = "analysis"
+MODEL_ANALYSIS_SALT = "analysis_salt"
+OKLYN_MODELS = [MODEL_FILTRATION, MODEL_ANALYSIS, MODEL_ANALYSIS_SALT]
+DEFAULT_MODEL = MODEL_ANALYSIS
 
 AUX_MODE_SWITCH = "switch"
 AUX_MODE_REGULATOR = "regulator"
@@ -28,9 +35,18 @@ DEFAULT_AUX_MODE = AUX_MODE_SWITCH
 
 DEFAULT_ENABLE_AUX1 = True
 DEFAULT_ENABLE_AUX2 = True
-DEFAULT_ENABLE_SALT = False
 DEFAULT_AUX1_NAME = "Auxiliaire 1"
 DEFAULT_AUX2_NAME = "Auxiliaire 2"
+
+
+def resolve_model(options) -> str:
+    """Return the configured Oklyn model, migrating legacy enable_salt."""
+    model = options.get(OPT_MODEL)
+    if model in OKLYN_MODELS:
+        return model
+    if options.get(OPT_ENABLE_SALT):
+        return MODEL_ANALYSIS_SALT
+    return DEFAULT_MODEL
 
 SCAN_INTERVAL_OPTIONS = [30, 60, 120, 300]
 

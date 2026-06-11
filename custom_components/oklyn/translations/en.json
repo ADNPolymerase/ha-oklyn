@@ -16,6 +16,7 @@
         "title": "Integration options",
         "description": "Configure polling and the auxiliary outputs of your Oklyn controller.",
         "data": {
+          "model": "Oklyn model",
           "scan_interval": "Polling interval (seconds)",
           "enable_aux1": "Enable Auxiliary 1",
           "enable_aux2": "Enable Auxiliary 2",
@@ -49,6 +50,7 @@
       "init": {
         "title": "Oklyn options",
         "data": {
+          "model": "Oklyn model",
           "scan_interval": "Polling interval (seconds)",
           "enable_aux1": "Enable Auxiliary 1",
           "enable_aux2": "Enable Auxiliary 2",
@@ -57,6 +59,15 @@
           "aux1_mode": "Auxiliary 1 type (switch = controllable, regulator = read-only)",
           "aux2_mode": "Auxiliary 2 type (switch = controllable, regulator = read-only)"
         }
+      }
+    }
+  },
+  "selector": {
+    "oklyn_model": {
+      "options": {
+        "filtration": "Filtration (temperature only)",
+        "analysis": "Filtration + Analysis (pH, RedOx)",
+        "analysis_salt": "Filtration + Analysis + Salt"
       }
     }
   },
@@ -73,6 +84,9 @@
       },
       "air_temperature": {
         "name": "Air temperature"
+      },
+      "salt": {
+        "name": "Salt"
       }
     },
     "select": {
