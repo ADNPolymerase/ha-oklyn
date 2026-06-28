@@ -60,6 +60,7 @@ class OklynMeasure:
     value: float | None
     measured_at: datetime | None
     measured_at_raw: str | None = None
+    status: str | None = None  # Oklyn range status: "normal", "high", "low", etc.
 
     @property
     def measured_at_iso(self) -> str | None:
@@ -216,11 +217,12 @@ class OklynApiClient:
         data = await self._async_request(
             "GET", f"/device/{DEVICE_ID}/data/{measure_type}"
         )
-        raw_ts = data.get("measured_at")
+        raw_ts = data.get("recorded") or data.get("measured_at")
         return OklynMeasure(
             value=_safe_float(data.get("value")),
             measured_at=_parse_dt(raw_ts),
             measured_at_raw=raw_ts,
+            status=data.get("status"),
         )
 
     # ------------------------------------------------------------------

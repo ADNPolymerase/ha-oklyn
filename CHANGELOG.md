@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.2.6] - 2026-06-20
+
+### Added
+- **Pump running binary sensor** (`binary_sensor.oklyn_pump_running`, device class `running`):
+  exposes the real pump state (is it actually filtering?) independently from the commanded
+  mode (`select`). Useful for automations and dashboards — e.g. mode=`auto` but pump stopped.
+- **Oklyn range status on sensors** (`status` attribute): the Oklyn API alert field
+  (`"normal"` / `"high"` / `"low"`) is now exposed as an attribute on pH, RedOx,
+  temperature and salt sensors.
+- `integration_type: "device"` added to `manifest.json` (HA modern pattern).
+
+### Fixed
+- **Measurement timestamp was always `None`**: the Oklyn API returns the timestamp
+  under the key `"recorded"`, not `"measured_at"`. The `measured_at` attribute on
+  sensors now returns the correct value.
+
 ## [0.2.2] - 2026-06-10
 
 ### Fixed

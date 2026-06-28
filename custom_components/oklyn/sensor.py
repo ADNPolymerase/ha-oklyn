@@ -131,6 +131,7 @@ class OklynSensor(OklynEntity, SensorEntity):
         if not measure:
             return {}
         return {
+            "status": measure.status,
             "measured_at": measure.measured_at_iso,
             "measured_at_raw": measure.measured_at_raw,
         }

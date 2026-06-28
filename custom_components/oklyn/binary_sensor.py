@@ -1,4 +1,4 @@
-"""Binary sensor platform for Oklyn auxiliaries in regulator mode (read-only)."""
+"""Binary sensor platform for Oklyn: pump running state + auxiliaries in regulator mode."""
 from __future__ import annotations
 
 import logging
@@ -39,7 +39,7 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     coordinator: OklynDataUpdateCoordinator = hass.data[DOMAIN][entry.entry_id]
-    entities: list[OklynAuxBinarySensor] = []
+    entities: list[BinarySensorEntity] = [OklynPumpRunningSensor(coordinator, entry)]
 
     if (
         entry.options.get(OPT_ENABLE_AUX1, True)
@@ -54,6 +54,35 @@ async def async_setup_entry(
         entities.append(OklynAuxBinarySensor(coordinator, entry, aux_id=2))
 
     async_add_entities(entities)
+
+
+class OklynPumpRunningSensor(OklynEntity, BinarySensorEntity):
+    """Binary sensor: is the pump actually running (real status, not commanded mode)."""
+
+    _attr_translation_key = "pump_running"
+    _attr_device_class = BinarySensorDeviceClass.RUNNING
+    _attr_icon = "mdi:pump"
+    _attr_unique_id = f"oklyn_{DEVICE_ID}_pump_running"
+
+    @property
+    def is_on(self) -> bool | None:
+        if self.coordinator.data is None or self.coordinator.data.pump is None:
+            return None
+        return self.coordinator.data.pump.running
+
+    @property
+    def available(self) -> bool:
+        return super().available and self.coordinator.data is not None and self.coordinator.data.pump is not None
+
+    @property
+    def extra_state_attributes(self) -> dict[str, Any]:
+        if self.coordinator.data is None or self.coordinator.data.pump is None:
+            return {}
+        pump = self.coordinator.data.pump
+        return {
+            "command": pump.command,
+            "changed_at": pump.changed_at_iso,
+        }
 
 
 class OklynAuxBinarySensor(OklynEntity, BinarySensorEntity):
