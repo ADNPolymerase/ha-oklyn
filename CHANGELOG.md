@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.2.6] - 2026-06-20
+## [0.4.0] - 2026-06-29
 
 ### Added
 - **Pump running binary sensor** (`binary_sensor.oklyn_pump_running`, device class `running`):

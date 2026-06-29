@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="custom_components/oklyn/brand/logo.png" alt="Oklyn" height="80">
+</p>
+
 # Oklyn for Home Assistant
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/ADNPolymerase/ha-oklyn)
@@ -24,7 +28,10 @@ Custom integration for the **Oklyn** pool controller, published via HACS.
 - **ORP / RedOx** sensor (mV)
 - **Water temperature** sensor (°C)
 - **Air temperature** sensor (°C)
+- **Salt** sensor in g/L (Salt model)
 - **Pump mode** select: `auto` / `on` / `off`
+- **Pump running** binary sensor: real electrical state of the pump, independent from the commanded mode (device class `running`)
+- **Sensor status attribute**: Oklyn alert level (`normal` / `low` / `high`) exposed on pH, RedOx, temperature and salt sensors — used by [Oklyn Card](https://github.com/ADNPolymerase/oklyn-card) for color coding
 - **Auxiliary 1** switch
 - **Auxiliary 2** switch
 - Full UI configuration — no YAML required
@@ -103,11 +110,12 @@ Changes take effect immediately (integration reloads automatically).
 
 | Entity | Type | Description |
 |---|---|---|
-| `sensor.oklyn_ph` | Sensor | pH value (Analysis models) |
-| `sensor.oklyn_redox` | Sensor | ORP / RedOx in mV (Analysis models) |
-| `sensor.oklyn_water_temperature` | Sensor | Water temperature in °C |
+| `sensor.oklyn_ph` | Sensor | pH value (Analysis models) — `status` attribute: `normal` / `low` / `high` |
+| `sensor.oklyn_redox` | Sensor | ORP / RedOx in mV (Analysis models) — `status` attribute |
+| `sensor.oklyn_water_temperature` | Sensor | Water temperature in °C — `status` attribute |
 | `sensor.oklyn_air_temperature` | Sensor | Air temperature in °C |
-| `sensor.oklyn_salt` | Sensor | Salt level in g/L (Salt model only) |
+| `sensor.oklyn_salt` | Sensor | Salt level in g/L (Salt model only) — `status` attribute |
+| `binary_sensor.oklyn_pump_running` | Binary sensor | Real pump running state (device class `running`) |
 | `select.oklyn_pump_mode` | Select | Pump command: auto / on / off |
 | `switch.oklyn_auxiliaire_1` | Switch | Auxiliary output 1 |
 | `switch.oklyn_auxiliaire_2` | Switch | Auxiliary output 2 |

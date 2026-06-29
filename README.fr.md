@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="custom_components/oklyn/brand/logo.png" alt="Oklyn" height="80">
+</p>
+
 # Oklyn pour Home Assistant
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/ADNPolymerase/ha-oklyn)
@@ -22,7 +26,10 @@ Intégration custom pour le **boîtier piscine Oklyn**, https://www.oklyn.fr/ pu
 - Capteur **ORP / RedOx** (mV)
 - Capteur **température eau** (°C)
 - Capteur **température air** (°C)
+- Capteur **sel** en g/L (modèle Sel)
 - Sélecteur **mode pompe** : `auto` / `on` / `off`
+- Capteur binaire **pompe en marche** : état électrique réel de la pompe, indépendant de la commande (device class `running`)
+- **Attribut status sur les capteurs** : niveau d'alerte Oklyn (`normal` / `low` / `high`) exposé sur pH, RedOx, température et sel — utilisé par [Oklyn Card](https://github.com/ADNPolymerase/oklyn-card) pour la coloration
 - Interrupteur **Auxiliaire 1**
 - Interrupteur **Auxiliaire 2**
 - Configuration 100 % via l'interface — aucun YAML requis
@@ -101,11 +108,12 @@ Les modifications prennent effet immédiatement (l'intégration se recharge auto
 
 | Entité | Type | Description |
 |---|---|---|
-| `sensor.oklyn_ph` | Capteur | Valeur pH (modèles Analyse) |
-| `sensor.oklyn_redox` | Capteur | ORP / RedOx en mV (modèles Analyse) |
-| `sensor.oklyn_water_temperature` | Capteur | Température eau en °C |
+| `sensor.oklyn_ph` | Capteur | Valeur pH (modèles Analyse) — attribut `status` : `normal` / `low` / `high` |
+| `sensor.oklyn_redox` | Capteur | ORP / RedOx en mV (modèles Analyse) — attribut `status` |
+| `sensor.oklyn_water_temperature` | Capteur | Température eau en °C — attribut `status` |
 | `sensor.oklyn_air_temperature` | Capteur | Température air en °C |
-| `sensor.oklyn_salt` | Capteur | Taux de sel en g/L (modèle Sel uniquement) |
+| `sensor.oklyn_salt` | Capteur | Taux de sel en g/L (modèle Sel uniquement) — attribut `status` |
+| `binary_sensor.oklyn_pump_running` | Capteur binaire | État réel de la pompe (device class `running`) |
 | `select.oklyn_pump_mode` | Choix | Commande pompe : auto / on / off |
 | `switch.oklyn_auxiliaire_1` | Interrupteur | Sortie auxiliaire 1 |
 | `switch.oklyn_auxiliaire_2` | Interrupteur | Sortie auxiliaire 2 |
