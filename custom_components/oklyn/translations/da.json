@@ -1,0 +1,108 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Oklyn poolstyring",
+        "description": "Indtast dine Oklyn API-legitimationsoplysninger.",
+        "data": {
+          "name": "Enhedsnavn",
+          "api_token": "API-token"
+        },
+        "data_description": {
+          "api_token": "Dit Oklyn API-token (X-Api-Token). Del det aldrig."
+        }
+      },
+      "aux": {
+        "title": "Integrationsindstillinger",
+        "description": "Konfigurer pollinghyppighed og ekstraudgange for din Oklyn-styring.",
+        "data": {
+          "model": "Oklyn-model",
+          "scan_interval": "Pollinginterval (sekunder)",
+          "enable_aux1": "Aktivér ekstraudgang 1",
+          "enable_aux2": "Aktivér ekstraudgang 2",
+          "aux1_name": "Navn på ekstraudgang 1",
+          "aux2_name": "Navn på ekstraudgang 2",
+          "aux1_mode": "Type af ekstraudgang 1 (switch = styrbar, regulator = kun læsning)",
+          "aux2_mode": "Type af ekstraudgang 2 (switch = styrbar, regulator = kun læsning)"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Godkend Oklyn igen",
+        "description": "Dit Oklyn API-token er ikke længere gyldigt. Indtast et nyt.",
+        "data": {
+          "api_token": "API-token"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Denne Oklyn-enhed er allerede konfigureret.",
+      "reauth_successful": "Fornyet godkendelse lykkedes."
+    },
+    "error": {
+      "cannot_connect": "Kunne ikke oprette forbindelse til Oklyn API. Tjek dit netværk.",
+      "invalid_auth": "Ugyldigt API-token.",
+      "invalid_response": "Uventet svar fra Oklyn API.",
+      "unknown": "Der opstod en uventet fejl."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Oklyn-indstillinger",
+        "data": {
+          "model": "Oklyn-model",
+          "scan_interval": "Pollinginterval (sekunder)",
+          "enable_aux1": "Aktivér ekstraudgang 1",
+          "enable_aux2": "Aktivér ekstraudgang 2",
+          "aux1_name": "Navn på ekstraudgang 1",
+          "aux2_name": "Navn på ekstraudgang 2",
+          "aux1_mode": "Type af ekstraudgang 1 (switch = styrbar, regulator = kun læsning)",
+          "aux2_mode": "Type af ekstraudgang 2 (switch = styrbar, regulator = kun læsning)"
+        }
+      }
+    }
+  },
+  "selector": {
+    "oklyn_model": {
+      "options": {
+        "filtration": "Filtrering (kun temperatur)",
+        "analysis": "Filtrering + Analyse (pH, RedOx)",
+        "analysis_salt": "Filtrering + Analyse + Salt"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "pump_running": {
+        "name": "Pumpen kører"
+      }
+    },
+    "sensor": {
+      "ph": {
+        "name": "pH"
+      },
+      "orp": {
+        "name": "RedOx"
+      },
+      "water_temperature": {
+        "name": "Vandtemperatur"
+      },
+      "air_temperature": {
+        "name": "Lufttemperatur"
+      },
+      "salt": {
+        "name": "Salt"
+      }
+    },
+    "select": {
+      "pump_mode": {
+        "name": "Pumpetilstand",
+        "state": {
+          "auto": "Auto",
+          "on": "Til",
+          "off": "Fra"
+        }
+      }
+    }
+  }
+}

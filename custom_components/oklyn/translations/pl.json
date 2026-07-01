@@ -1,0 +1,108 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Sterownik basenowy Oklyn",
+        "description": "Wprowadź dane uwierzytelniające API Oklyn.",
+        "data": {
+          "name": "Nazwa urządzenia",
+          "api_token": "Token API"
+        },
+        "data_description": {
+          "api_token": "Twój token API Oklyn (X-Api-Token). Nigdy go nie udostępniaj."
+        }
+      },
+      "aux": {
+        "title": "Opcje integracji",
+        "description": "Skonfiguruj częstotliwość odpytywania i wyjścia pomocnicze sterownika Oklyn.",
+        "data": {
+          "model": "Model Oklyn",
+          "scan_interval": "Częstotliwość odpytywania (sekundy)",
+          "enable_aux1": "Włącz wyjście pomocnicze 1",
+          "enable_aux2": "Włącz wyjście pomocnicze 2",
+          "aux1_name": "Nazwa wyjścia pomocniczego 1",
+          "aux2_name": "Nazwa wyjścia pomocniczego 2",
+          "aux1_mode": "Typ wyjścia pomocniczego 1 (switch = sterowalne, regulator = tylko odczyt)",
+          "aux2_mode": "Typ wyjścia pomocniczego 2 (switch = sterowalne, regulator = tylko odczyt)"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Ponowne uwierzytelnienie Oklyn",
+        "description": "Twój token API Oklyn wygasł. Wprowadź nowy.",
+        "data": {
+          "api_token": "Token API"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "To urządzenie Oklyn jest już skonfigurowane.",
+      "reauth_successful": "Ponowne uwierzytelnienie zakończone sukcesem."
+    },
+    "error": {
+      "cannot_connect": "Nie można połączyć się z API Oklyn. Sprawdź połączenie sieciowe.",
+      "invalid_auth": "Nieprawidłowy token API.",
+      "invalid_response": "Nieoczekiwana odpowiedź z API Oklyn.",
+      "unknown": "Wystąpił nieoczekiwany błąd."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opcje Oklyn",
+        "data": {
+          "model": "Model Oklyn",
+          "scan_interval": "Częstotliwość odpytywania (sekundy)",
+          "enable_aux1": "Włącz wyjście pomocnicze 1",
+          "enable_aux2": "Włącz wyjście pomocnicze 2",
+          "aux1_name": "Nazwa wyjścia pomocniczego 1",
+          "aux2_name": "Nazwa wyjścia pomocniczego 2",
+          "aux1_mode": "Typ wyjścia pomocniczego 1 (switch = sterowalne, regulator = tylko odczyt)",
+          "aux2_mode": "Typ wyjścia pomocniczego 2 (switch = sterowalne, regulator = tylko odczyt)"
+        }
+      }
+    }
+  },
+  "selector": {
+    "oklyn_model": {
+      "options": {
+        "filtration": "Filtracja (tylko temperatura)",
+        "analysis": "Filtracja + Analiza (pH, RedOx)",
+        "analysis_salt": "Filtracja + Analiza + Sól"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "pump_running": {
+        "name": "Pompa pracuje"
+      }
+    },
+    "sensor": {
+      "ph": {
+        "name": "pH"
+      },
+      "orp": {
+        "name": "RedOx"
+      },
+      "water_temperature": {
+        "name": "Temperatura wody"
+      },
+      "air_temperature": {
+        "name": "Temperatura powietrza"
+      },
+      "salt": {
+        "name": "Sól"
+      }
+    },
+    "select": {
+      "pump_mode": {
+        "name": "Tryb pompy",
+        "state": {
+          "auto": "Auto",
+          "on": "Wł.",
+          "off": "Wył."
+        }
+      }
+    }
+  }
+}

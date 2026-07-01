@@ -1,0 +1,108 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Oklyn zwembadregelaar",
+        "description": "Voer uw Oklyn API-inloggegevens in.",
+        "data": {
+          "name": "Apparaatnaam",
+          "api_token": "API-token"
+        },
+        "data_description": {
+          "api_token": "Uw Oklyn API-token (X-Api-Token). Deel dit nooit."
+        }
+      },
+      "aux": {
+        "title": "Integratie-opties",
+        "description": "Configureer de pollingfrequentie en de hulpuitgangen van uw Oklyn-regelaar.",
+        "data": {
+          "model": "Oklyn-model",
+          "scan_interval": "Pollinginterval (seconden)",
+          "enable_aux1": "Hulpuitgang 1 inschakelen",
+          "enable_aux2": "Hulpuitgang 2 inschakelen",
+          "aux1_name": "Naam hulpuitgang 1",
+          "aux2_name": "Naam hulpuitgang 2",
+          "aux1_mode": "Type hulpuitgang 1 (switch = schakelbaar, regulator = alleen-lezen)",
+          "aux2_mode": "Type hulpuitgang 2 (switch = schakelbaar, regulator = alleen-lezen)"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Oklyn opnieuw verifiëren",
+        "description": "Uw Oklyn API-token is niet meer geldig. Voer een nieuw token in.",
+        "data": {
+          "api_token": "API-token"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Dit Oklyn-apparaat is al geconfigureerd.",
+      "reauth_successful": "Opnieuw verifiëren geslaagd."
+    },
+    "error": {
+      "cannot_connect": "Kan geen verbinding maken met de Oklyn API. Controleer uw netwerk.",
+      "invalid_auth": "Ongeldig API-token.",
+      "invalid_response": "Onverwacht antwoord van de Oklyn API.",
+      "unknown": "Er is een onverwachte fout opgetreden."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Oklyn-opties",
+        "data": {
+          "model": "Oklyn-model",
+          "scan_interval": "Pollinginterval (seconden)",
+          "enable_aux1": "Hulpuitgang 1 inschakelen",
+          "enable_aux2": "Hulpuitgang 2 inschakelen",
+          "aux1_name": "Naam hulpuitgang 1",
+          "aux2_name": "Naam hulpuitgang 2",
+          "aux1_mode": "Type hulpuitgang 1 (switch = schakelbaar, regulator = alleen-lezen)",
+          "aux2_mode": "Type hulpuitgang 2 (switch = schakelbaar, regulator = alleen-lezen)"
+        }
+      }
+    }
+  },
+  "selector": {
+    "oklyn_model": {
+      "options": {
+        "filtration": "Filtratie (alleen temperatuur)",
+        "analysis": "Filtratie + Analyse (pH, RedOx)",
+        "analysis_salt": "Filtratie + Analyse + Zout"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "pump_running": {
+        "name": "Pomp actief"
+      }
+    },
+    "sensor": {
+      "ph": {
+        "name": "pH"
+      },
+      "orp": {
+        "name": "RedOx"
+      },
+      "water_temperature": {
+        "name": "Watertemperatuur"
+      },
+      "air_temperature": {
+        "name": "Luchttemperatuur"
+      },
+      "salt": {
+        "name": "Zout"
+      }
+    },
+    "select": {
+      "pump_mode": {
+        "name": "Pompmodus",
+        "state": {
+          "auto": "Auto",
+          "on": "Aan",
+          "off": "Uit"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Oklyn poolstyrning",
+        "description": "Ange dina Oklyn API-uppgifter.",
+        "data": {
+          "name": "Enhetsnamn",
+          "api_token": "API-token"
+        },
+        "data_description": {
+          "api_token": "Ditt Oklyn API-token (X-Api-Token). Dela det aldrig."
+        }
+      },
+      "aux": {
+        "title": "Integrationsalternativ",
+        "description": "Konfigurera avsökningsfrekvens och extrautgångar för din Oklyn-styrning.",
+        "data": {
+          "model": "Oklyn-modell",
+          "scan_interval": "Avsökningsintervall (sekunder)",
+          "enable_aux1": "Aktivera extrautgång 1",
+          "enable_aux2": "Aktivera extrautgång 2",
+          "aux1_name": "Namn på extrautgång 1",
+          "aux2_name": "Namn på extrautgång 2",
+          "aux1_mode": "Typ av extrautgång 1 (switch = styrbar, regulator = endast läsning)",
+          "aux2_mode": "Typ av extrautgång 2 (switch = styrbar, regulator = endast läsning)"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Autentisera Oklyn på nytt",
+        "description": "Ditt Oklyn API-token är inte längre giltigt. Ange ett nytt.",
+        "data": {
+          "api_token": "API-token"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Den här Oklyn-enheten är redan konfigurerad.",
+      "reauth_successful": "Ny autentisering lyckades."
+    },
+    "error": {
+      "cannot_connect": "Det gick inte att ansluta till Oklyn API. Kontrollera nätverket.",
+      "invalid_auth": "Ogiltigt API-token.",
+      "invalid_response": "Oväntat svar från Oklyn API.",
+      "unknown": "Ett oväntat fel uppstod."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Oklyn-alternativ",
+        "data": {
+          "model": "Oklyn-modell",
+          "scan_interval": "Avsökningsintervall (sekunder)",
+          "enable_aux1": "Aktivera extrautgång 1",
+          "enable_aux2": "Aktivera extrautgång 2",
+          "aux1_name": "Namn på extrautgång 1",
+          "aux2_name": "Namn på extrautgång 2",
+          "aux1_mode": "Typ av extrautgång 1 (switch = styrbar, regulator = endast läsning)",
+          "aux2_mode": "Typ av extrautgång 2 (switch = styrbar, regulator = endast läsning)"
+        }
+      }
+    }
+  },
+  "selector": {
+    "oklyn_model": {
+      "options": {
+        "filtration": "Filtrering (endast temperatur)",
+        "analysis": "Filtrering + Analys (pH, RedOx)",
+        "analysis_salt": "Filtrering + Analys + Salt"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "pump_running": {
+        "name": "Pumpen är igång"
+      }
+    },
+    "sensor": {
+      "ph": {
+        "name": "pH"
+      },
+      "orp": {
+        "name": "RedOx"
+      },
+      "water_temperature": {
+        "name": "Vattentemperatur"
+      },
+      "air_temperature": {
+        "name": "Lufttemperatur"
+      },
+      "salt": {
+        "name": "Salt"
+      }
+    },
+    "select": {
+      "pump_mode": {
+        "name": "Pumpläge",
+        "state": {
+          "auto": "Auto",
+          "on": "På",
+          "off": "Av"
+        }
+      }
+    }
+  }
+}

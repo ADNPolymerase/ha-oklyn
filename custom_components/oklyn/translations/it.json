@@ -1,0 +1,108 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Centralina piscina Oklyn",
+        "description": "Inserisci le tue credenziali API Oklyn.",
+        "data": {
+          "name": "Nome del dispositivo",
+          "api_token": "Token API"
+        },
+        "data_description": {
+          "api_token": "Il tuo token API Oklyn (X-Api-Token). Non condividerlo mai."
+        }
+      },
+      "aux": {
+        "title": "Opzioni dell'integrazione",
+        "description": "Configura la frequenza di interrogazione e le uscite ausiliarie della tua centralina Oklyn.",
+        "data": {
+          "model": "Modello Oklyn",
+          "scan_interval": "Intervallo di interrogazione (secondi)",
+          "enable_aux1": "Abilita ausiliario 1",
+          "enable_aux2": "Abilita ausiliario 2",
+          "aux1_name": "Nome ausiliario 1",
+          "aux2_name": "Nome ausiliario 2",
+          "aux1_mode": "Tipo ausiliario 1 (switch = controllabile, regulator = sola lettura)",
+          "aux2_mode": "Tipo ausiliario 2 (switch = controllabile, regulator = sola lettura)"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Ri-autenticazione Oklyn",
+        "description": "Il tuo token API Oklyn non è più valido. Inseriscine uno nuovo.",
+        "data": {
+          "api_token": "Token API"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Questo dispositivo Oklyn è già configurato.",
+      "reauth_successful": "Ri-autenticazione riuscita."
+    },
+    "error": {
+      "cannot_connect": "Impossibile connettersi all'API Oklyn. Controlla la rete.",
+      "invalid_auth": "Token API non valido.",
+      "invalid_response": "Risposta inattesa dall'API Oklyn.",
+      "unknown": "Si è verificato un errore imprevisto."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opzioni Oklyn",
+        "data": {
+          "model": "Modello Oklyn",
+          "scan_interval": "Intervallo di interrogazione (secondi)",
+          "enable_aux1": "Abilita ausiliario 1",
+          "enable_aux2": "Abilita ausiliario 2",
+          "aux1_name": "Nome ausiliario 1",
+          "aux2_name": "Nome ausiliario 2",
+          "aux1_mode": "Tipo ausiliario 1 (switch = controllabile, regulator = sola lettura)",
+          "aux2_mode": "Tipo ausiliario 2 (switch = controllabile, regulator = sola lettura)"
+        }
+      }
+    }
+  },
+  "selector": {
+    "oklyn_model": {
+      "options": {
+        "filtration": "Filtrazione (solo temperatura)",
+        "analysis": "Filtrazione + Analisi (pH, RedOx)",
+        "analysis_salt": "Filtrazione + Analisi + Sale"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "pump_running": {
+        "name": "Pompa in funzione"
+      }
+    },
+    "sensor": {
+      "ph": {
+        "name": "pH"
+      },
+      "orp": {
+        "name": "RedOx"
+      },
+      "water_temperature": {
+        "name": "Temperatura acqua"
+      },
+      "air_temperature": {
+        "name": "Temperatura aria"
+      },
+      "salt": {
+        "name": "Sale"
+      }
+    },
+    "select": {
+      "pump_mode": {
+        "name": "Modalità pompa",
+        "state": {
+          "auto": "Auto",
+          "on": "Acceso",
+          "off": "Spento"
+        }
+      }
+    }
+  }
+}

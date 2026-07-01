@@ -1,0 +1,108 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Oklyn Pool-Steuerung",
+        "description": "Geben Sie Ihre Oklyn-API-Zugangsdaten ein.",
+        "data": {
+          "name": "Gerätename",
+          "api_token": "API-Token"
+        },
+        "data_description": {
+          "api_token": "Ihr Oklyn-API-Token (X-Api-Token). Niemals weitergeben."
+        }
+      },
+      "aux": {
+        "title": "Integrationsoptionen",
+        "description": "Konfigurieren Sie die Abfragehäufigkeit und die Zusatzausgänge Ihrer Oklyn-Steuerung.",
+        "data": {
+          "model": "Oklyn-Modell",
+          "scan_interval": "Abfrageintervall (Sekunden)",
+          "enable_aux1": "Zusatzausgang 1 aktivieren",
+          "enable_aux2": "Zusatzausgang 2 aktivieren",
+          "aux1_name": "Name des Zusatzausgangs 1",
+          "aux2_name": "Name des Zusatzausgangs 2",
+          "aux1_mode": "Typ des Zusatzausgangs 1 (switch = schaltbar, regulator = nur lesbar)",
+          "aux2_mode": "Typ des Zusatzausgangs 2 (switch = schaltbar, regulator = nur lesbar)"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Oklyn erneut authentifizieren",
+        "description": "Ihr Oklyn-API-Token ist nicht mehr gültig. Geben Sie ein neues ein.",
+        "data": {
+          "api_token": "API-Token"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Dieses Oklyn-Gerät ist bereits konfiguriert.",
+      "reauth_successful": "Erneute Authentifizierung erfolgreich."
+    },
+    "error": {
+      "cannot_connect": "Verbindung zur Oklyn-API nicht möglich. Netzwerk überprüfen.",
+      "invalid_auth": "Ungültiges API-Token.",
+      "invalid_response": "Unerwartete Antwort der Oklyn-API.",
+      "unknown": "Ein unerwarteter Fehler ist aufgetreten."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Oklyn-Optionen",
+        "data": {
+          "model": "Oklyn-Modell",
+          "scan_interval": "Abfrageintervall (Sekunden)",
+          "enable_aux1": "Zusatzausgang 1 aktivieren",
+          "enable_aux2": "Zusatzausgang 2 aktivieren",
+          "aux1_name": "Name des Zusatzausgangs 1",
+          "aux2_name": "Name des Zusatzausgangs 2",
+          "aux1_mode": "Typ des Zusatzausgangs 1 (switch = schaltbar, regulator = nur lesbar)",
+          "aux2_mode": "Typ des Zusatzausgangs 2 (switch = schaltbar, regulator = nur lesbar)"
+        }
+      }
+    }
+  },
+  "selector": {
+    "oklyn_model": {
+      "options": {
+        "filtration": "Filterung (nur Temperatur)",
+        "analysis": "Filterung + Analyse (pH, RedOx)",
+        "analysis_salt": "Filterung + Analyse + Salz"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "pump_running": {
+        "name": "Pumpe läuft"
+      }
+    },
+    "sensor": {
+      "ph": {
+        "name": "pH"
+      },
+      "orp": {
+        "name": "RedOx"
+      },
+      "water_temperature": {
+        "name": "Wassertemperatur"
+      },
+      "air_temperature": {
+        "name": "Lufttemperatur"
+      },
+      "salt": {
+        "name": "Salz"
+      }
+    },
+    "select": {
+      "pump_mode": {
+        "name": "Pumpenmodus",
+        "state": {
+          "auto": "Automatik",
+          "on": "Ein",
+          "off": "Aus"
+        }
+      }
+    }
+  }
+}
