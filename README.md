@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="custom_components/oklyn/brand/logo.png" alt="Oklyn" height="80">
+  <img src="https://raw.githubusercontent.com/ADNPolymerase/ha-oklyn/main/custom_components/oklyn/brand/logo.png" alt="Oklyn" height="80">
 </p>
 
 # Oklyn for Home Assistant
@@ -125,7 +125,7 @@ Changes take effect immediately (integration reloads automatically).
 
 ## Screenshot
 
-![Oklyn Card](docs/oklyn-card.png)
+![Oklyn Card](https://raw.githubusercontent.com/ADNPolymerase/ha-oklyn/main/docs/oklyn-card.png)
 
 ---
 
