@@ -39,7 +39,7 @@ Custom integration for the **Oklyn** pool controller, published via HACS.
 - Cloud polling via `https://api.oklyn.fr/public/v1/`
 - Re-authentication flow when token expires
 - Diagnostics support (token never exposed)
-- French and English translations
+- French, English and Russian translations
 
 ---
 

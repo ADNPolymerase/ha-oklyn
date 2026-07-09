@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.5.2] - 2026-07-09
+
+### Added
+- Russian translation (`translations/ru.json`).
+
 ## [0.4.0] - 2026-06-29
 
 ### Added

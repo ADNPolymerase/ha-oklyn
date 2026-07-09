@@ -1,0 +1,108 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Контроллер бассейна Oklyn",
+        "description": "Введите данные API Oklyn.",
+        "data": {
+          "name": "Название устройства",
+          "api_token": "API-токен"
+        },
+        "data_description": {
+          "api_token": "Ваш API-токен Oklyn (X-Api-Token). Никогда не передавайте его третьим лицам."
+        }
+      },
+      "aux": {
+        "title": "Параметры интеграции",
+        "description": "Настройте опрос и дополнительные выходы вашего контроллера Oklyn.",
+        "data": {
+          "model": "Модель Oklyn",
+          "scan_interval": "Интервал опроса (секунды)",
+          "enable_aux1": "Включить дополнительный выход 1",
+          "enable_aux2": "Включить дополнительный выход 2",
+          "aux1_name": "Название дополнительного выхода 1",
+          "aux2_name": "Название дополнительного выхода 2",
+          "aux1_mode": "Тип дополнительного выхода 1 (switch = управляемый, regulator = только чтение)",
+          "aux2_mode": "Тип дополнительного выхода 2 (switch = управляемый, regulator = только чтение)"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Повторная авторизация Oklyn",
+        "description": "Ваш API-токен Oklyn больше не действителен. Введите новый.",
+        "data": {
+          "api_token": "API-токен"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Это устройство Oklyn уже настроено.",
+      "reauth_successful": "Повторная авторизация выполнена успешно."
+    },
+    "error": {
+      "cannot_connect": "Не удалось подключиться к API Oklyn. Проверьте сеть.",
+      "invalid_auth": "Недействительный API-токен.",
+      "invalid_response": "Неожиданный ответ от API Oklyn.",
+      "unknown": "Произошла непредвиденная ошибка."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Параметры Oklyn",
+        "data": {
+          "model": "Модель Oklyn",
+          "scan_interval": "Интервал опроса (секунды)",
+          "enable_aux1": "Включить дополнительный выход 1",
+          "enable_aux2": "Включить дополнительный выход 2",
+          "aux1_name": "Название дополнительного выхода 1",
+          "aux2_name": "Название дополнительного выхода 2",
+          "aux1_mode": "Тип дополнительного выхода 1 (switch = управляемый, regulator = только чтение)",
+          "aux2_mode": "Тип дополнительного выхода 2 (switch = управляемый, regulator = только чтение)"
+        }
+      }
+    }
+  },
+  "selector": {
+    "oklyn_model": {
+      "options": {
+        "filtration": "Фильтрация (только температура)",
+        "analysis": "Фильтрация + анализ (pH, RedOx)",
+        "analysis_salt": "Фильтрация + анализ + соль"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "pump_running": {
+        "name": "Насос работает"
+      }
+    },
+    "sensor": {
+      "ph": {
+        "name": "pH"
+      },
+      "orp": {
+        "name": "RedOx"
+      },
+      "water_temperature": {
+        "name": "Температура воды"
+      },
+      "air_temperature": {
+        "name": "Температура воздуха"
+      },
+      "salt": {
+        "name": "Соль"
+      }
+    },
+    "select": {
+      "pump_mode": {
+        "name": "Режим насоса",
+        "state": {
+          "auto": "Авто",
+          "on": "Вкл",
+          "off": "Выкл"
+        }
+      }
+    }
+  }
+}

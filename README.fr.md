@@ -39,7 +39,7 @@ Intégration custom pour le **boîtier piscine Oklyn**, https://www.oklyn.fr/ pu
 - Scrutation cloud via `https://api.oklyn.fr/public/v1/`
 - Flow de ré-authentification si le token expire
 - Support des diagnostics (token jamais exposé)
-- Traductions française et anglaise
+- Traductions française, anglaise et russe
 
 ---
 
