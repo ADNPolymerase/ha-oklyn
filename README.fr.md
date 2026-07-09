@@ -83,7 +83,7 @@ Les trois modèles correspondent à la [gamme officielle Oklyn](https://www.okly
 
 ## Capture d'écran
 
-![Oklyn Card](https://raw.githubusercontent.com/ADNPolymerase/ha-oklyn/main/docs/oklyn-card.png)
+![Oklyn Card](https://raw.githubusercontent.com/ADNPolymerase/ha-oklyn/main/docs/oklyn-card.fr.png)
 
 ---
 
