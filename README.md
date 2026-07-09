@@ -25,60 +25,26 @@ Custom integration for the **Oklyn** pool controller, published via HACS.
 
 ## Features
 
-- **pH** sensor
-- **ORP / RedOx** sensor (mV)
-- **Water temperature** sensor (°C)
-- **Air temperature** sensor (°C)
-- **Salt** sensor in g/L (Salt model)
-- **Pump mode** select: `auto` / `on` / `off`
-- **Pump running** binary sensor: real electrical state of the pump, independent from the commanded mode (device class `running`)
-- **Sensor status attribute**: Oklyn alert level (`normal` / `low` / `high`) exposed on pH, RedOx, temperature and salt sensors — used by [Oklyn Card](https://github.com/ADNPolymerase/oklyn-card) for color coding
-- **Auxiliary 1** switch
-- **Auxiliary 2** switch
-- Full UI configuration — no YAML required
-- Cloud polling via `https://api.oklyn.fr/public/v1/`
-- Re-authentication flow when token expires
-- Diagnostics support (token never exposed)
-- French, English and Russian translations
+- **pH, ORP/RedOx (mV), water & air temperature, salt (g/L, Salt model)** sensors — with an Oklyn alert `status` attribute (`normal` / `low` / `high`) used by [Oklyn Card](https://github.com/ADNPolymerase/oklyn-card) for color coding.
+- **Pump mode** select (`auto` / `on` / `off`) and **pump running** binary sensor (real electrical state, independent from the command).
+- **Auxiliary 1 and 2** switches.
+- Full UI configuration, cloud polling (`api.oklyn.fr`), re-authentication flow, diagnostics support (token never exposed), French/English/Russian translations.
 
 ---
 
-## Installation via HACS
+## Installation (HACS)
 
-1. In Home Assistant, open **HACS → Integrations**.
-2. Click the **⋮** menu → **Custom repositories**.
-3. Add `https://github.com/ADNPolymerase/ha-oklyn` with category **Integration**.
-4. Search for **Oklyn** and click **Download**.
-5. Restart Home Assistant.
-6. Go to **Settings → Devices & Services → Add Integration** and search for **Oklyn**.
+1. HACS → **⋮** → **Custom repositories** → `https://github.com/ADNPolymerase/ha-oklyn`, category **Integration**.
+2. Download **Oklyn**, restart Home Assistant.
+3. **Settings → Devices & Services → Add Integration** → search for **Oklyn**.
 
----
-
-## Manual installation
-
-1. Download or clone this repository.
-2. Copy the `custom_components/oklyn/` folder into your Home Assistant
-   `config/custom_components/` directory.
-3. Restart Home Assistant.
-4. Go to **Settings → Devices & Services → Add Integration** and search for **Oklyn**.
+Manual alternative: copy `custom_components/oklyn/` into `config/custom_components/`, restart, then add the integration.
 
 ---
 
 ## Configuration
 
-During setup you will be asked for:
-
-| Field | Required | Default | Description |
-|---|---|---|---|
-| Device name | No | Oklyn | Friendly name shown in HA |
-| API token | Yes | — | Your `X-Api-Token` from the Oklyn app |
-
-The device ID is always `my` — you do not need to enter it.
-
-### How to get your API token
-
-Access to the API is secured by a private key managed in the Oklyn app:
-**Oklyn → My Account → API Key**
+Setup asks for a device name (optional) and your **API token** — found in the Oklyn app under **My Account → API Key**. The device ID is always `my`.
 
 ---
 
@@ -95,15 +61,7 @@ After setup, go to **Settings → Devices & Services → Oklyn → Configure** t
 | Auxiliary 1 name | Auxiliaire 1 | Custom name for the Aux 1 switch |
 | Auxiliary 2 name | Auxiliaire 2 | Custom name for the Aux 2 switch |
 
-The three Oklyn models match the [official lineup](https://www.oklyn.fr/assistant-piscine-connecte/):
-
-| Model | Sensors created |
-|---|---|
-| Filtration | Temperatures, pump, auxiliaries |
-| Filtration + Analysis | + pH, RedOx |
-| Filtration + Analysis + Salt | + Salt (g/L) |
-
-Changes take effect immediately (integration reloads automatically).
+The three models match the [official lineup](https://www.oklyn.fr/assistant-piscine-connecte/): **Filtration** (temperatures, pump, auxiliaries), **+ Analysis** (adds pH, RedOx), **+ Salt** (adds salt g/L). Changes take effect immediately.
 
 ---
 
@@ -131,114 +89,28 @@ Changes take effect immediately (integration reloads automatically).
 
 ## Example dashboard
 
-### Oklyn Card (recommended)
-
-A dedicated Lovelace card is available — pH/RedOx with thresholds, temperatures,
-pump control, auxiliaries (switch or regulator), pH calibration offset.
-No dependency, full visual editor.
-
-[![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=ADNPolymerase&repository=oklyn-card&category=plugin)
-→ [ADNPolymerase/oklyn-card](https://github.com/ADNPolymerase/oklyn-card)
-
-### YAML examples
-
-Two ready-to-use examples are provided:
-
-- [`examples/dashboard.yaml`](examples/dashboard.yaml) — **native cards only** (no HACS
-  frontend dependency): water quality gauges (pH / RedOx), temperature tiles with 24h
-  history, pump mode selector and auxiliary switches.
-- [`examples/dashboard-bubble.yaml`](examples/dashboard-bubble.yaml) — nicer look, but
-  **requires two HACS frontend plugins** (one-click install):
-  - Bubble Card: [![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Clooos&repository=Bubble-Card&category=plugin)
-  - Pool Monitor Card: [![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=wilsto&repository=pool-monitor-card&category=plugin)
-
-  Pump mode buttons, auxiliary 1/2 controls (each in its own optional block), and a
-  full water quality panel.
-
-To use them: **Dashboard → ✏️ Edit → ⋮ → Raw configuration editor**, then paste the
-cards. Adjust entity IDs if you renamed your entities (note: default entity IDs
-depend on your Home Assistant language).
+The recommended way is the dedicated **[Oklyn Card](https://github.com/ADNPolymerase/oklyn-card)** (see above). Two ready-to-use YAML examples are also provided: [`examples/dashboard.yaml`](examples/dashboard.yaml) (native cards only) and [`examples/dashboard-bubble.yaml`](examples/dashboard-bubble.yaml) (requires Bubble Card + Pool Monitor Card from HACS). Paste them via **Dashboard → ✏️ Edit → ⋮ → Raw configuration editor** and adjust entity IDs if needed.
 
 ---
 
 ## Important behavior
 
-### Pump
-
-The pump entity reflects the **command** sent to the Oklyn API, not necessarily the
-real electrical state.
-
-- `pump` (API field) = command: `auto`, `on`, or `off`
-- `status` (API field) = actual real-time state: `on` or `off`
-
-In **auto** mode, the Oklyn controller manages the pump schedule internally.
-`status` can be `on` or `off` while `command` is `auto` — this is **normal**.
-
-The `select.oklyn_pump_mode` entity:
-- Shows `current_option` = `pump` (the command)
-- Exposes `status`, `running`, and `in_transition` as attributes
-- `in_transition` is `true` only when `command` is `on` or `off` and differs from `status`
-  (never when `command = auto`)
-
-### Auxiliaries
-
-- `aux` (API field) = command sent: `on` or `off`
-- `status` (API field) = actual real-time state: `on` or `off`
-
-The switch `is_on` state reflects **status** (real state), not the command.
-A brief discrepancy between command and status is normal and exposed as `in_transition`.
-
-### After a command
-
-After sending a command (pump or aux), the integration immediately refreshes data,
-then schedules a second refresh ~6 seconds later to capture the real state transition.
+The Oklyn API distinguishes the **command** (`pump` = `auto`/`on`/`off`, `aux` = `on`/`off`) from the **real state** (`status`). In `auto` mode the controller manages the schedule internally, so `status` can differ from the command — this is normal. The pump select shows the command and exposes `status` / `running` / `in_transition` as attributes; the aux switches reflect the real state, with brief command/status discrepancies exposed as `in_transition`. After each command, data is refreshed immediately, then again ~6 s later to capture the transition.
 
 ---
 
 ## Troubleshooting
 
-### Invalid auth
-
-Your API token has been rejected. Go to **Settings → Devices & Services → Oklyn → ⋮ →
-Re-authenticate** to enter a new token.
-
-### Cannot connect
-
-The Oklyn API is unreachable. Check your internet connection and the Oklyn service status.
-
-### Auxiliary 2 unavailable
-
-Some Oklyn models do not have a second auxiliary output. If `aux2` returns a 404,
-the entity is automatically marked unavailable. You can disable it in Options.
-
-### Entities stuck on "Unavailable"
-
-Check **Settings → System → Logs** and filter on `oklyn` for details.
-Enable debug logging by adding to your `configuration.yaml`:
-
-```yaml
-logger:
-  logs:
-    custom_components.oklyn: debug
-```
+- **Invalid auth** — token rejected: **Settings → Devices & Services → Oklyn → ⋮ → Re-authenticate**.
+- **Cannot connect** — the Oklyn API is unreachable; check your connection and the Oklyn service status.
+- **Auxiliary 2 unavailable** — some models have no second output (404 → entity marked unavailable); disable it in Options.
+- **Entities stuck on "Unavailable"** — check the logs (filter on `oklyn`), or enable debug logging: `logger: logs: custom_components.oklyn: debug`.
 
 ---
 
-## Privacy
+## Privacy & limitations
 
-The API token is stored encrypted in the Home Assistant config entry storage.
-It is **never** logged, never exposed in entity attributes, and never included
-in diagnostics exports (it appears as `**REDACTED**`).
-
----
-
-## Known limitations
-
-- Single device only — the Oklyn API uses `/device/my` with no multi-device support.
-- Cloud polling — no local API or push notifications.
-- Aux 2 may not be available on all Oklyn hardware revisions.
-- Timestamps from the API have no timezone info; they are stored as-is and also
-  parsed as naive datetimes.
+The API token is stored encrypted, never logged, never exposed in attributes, and redacted in diagnostics. Single device only (`/device/my`), cloud polling (no local API or push), Aux 2 not present on all hardware revisions, API timestamps are timezone-naive.
 
 ---
 
