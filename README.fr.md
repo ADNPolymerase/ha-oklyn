@@ -4,7 +4,7 @@
 
 # Oklyn pour Home Assistant
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/ADNPolymerase/ha-oklyn)
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-blue.svg)](https://github.com/hacs/default)
 [![GitHub Release](https://badgen.net/github/release/ADNPolymerase/ha-oklyn)](https://github.com/ADNPolymerase/ha-oklyn/releases)
 [![Hassfest](https://github.com/ADNPolymerase/ha-oklyn/actions/workflows/hassfest.yml/badge.svg)](https://github.com/ADNPolymerase/ha-oklyn/actions/workflows/hassfest.yml)
 [![HA Version](https://img.shields.io/badge/Home%20Assistant-2024.1%2B-blue.svg)](https://www.home-assistant.io/)
@@ -34,8 +34,10 @@ Intégration custom pour le **boîtier piscine Oklyn**, https://www.oklyn.fr/ pu
 
 ## Installation (HACS)
 
-1. HACS → **⋮** → **Dépôts personnalisés** → `https://github.com/ADNPolymerase/ha-oklyn`, catégorie **Intégration**.
-2. Téléchargez **Oklyn**, redémarrez Home Assistant.
+Disponible directement dans HACS — aucun dépôt personnalisé à ajouter.
+
+1. Ouvrez **HACS**, recherchez **Oklyn** et téléchargez-le.
+2. Redémarrez Home Assistant.
 3. **Paramètres → Appareils et services → Ajouter une intégration** → recherchez **Oklyn**.
 
 Alternative manuelle : copiez `custom_components/oklyn/` dans `config/custom_components/`, redémarrez, puis ajoutez l'intégration.
