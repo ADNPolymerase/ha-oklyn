@@ -40,6 +40,8 @@ Disponible directement dans HACS — aucun dépôt personnalisé à ajouter.
 2. Redémarrez Home Assistant.
 3. **Paramètres → Appareils et services → Ajouter une intégration** → recherchez **Oklyn**.
 
+En dépôt personnalisé : HACS → **⋮** → **Dépôts personnalisés** → `https://github.com/ADNPolymerase/ha-oklyn`, catégorie **Intégration**.
+
 Alternative manuelle : copiez `custom_components/oklyn/` dans `config/custom_components/`, redémarrez, puis ajoutez l'intégration.
 
 ---

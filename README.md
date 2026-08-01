@@ -40,6 +40,8 @@ Available directly in HACS — no custom repository needed.
 2. Restart Home Assistant.
 3. **Settings → Devices & Services → Add Integration** → search for **Oklyn**.
 
+As a custom repository: HACS → **⋮** → **Custom repositories** → `https://github.com/ADNPolymerase/ha-oklyn`, category **Integration**.
+
 Manual alternative: copy `custom_components/oklyn/` into `config/custom_components/`, restart, then add the integration.
 
 ---
