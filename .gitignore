@@ -218,7 +218,9 @@ __marimo__/
 .streamlit/secrets.toml
 
 # --- Personal files, never publish (HA workspace) ---
+.claude/
 .DS_Store
+CLAUDE.md
 Clef
 Mon
 audit_*.md
