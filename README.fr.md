@@ -4,6 +4,8 @@
 
 # Oklyn pour Home Assistant
 
+<a href="https://github.com/ADNPolymerase/ha-oklyn/blob/main/README.md"><img src="https://raw.githubusercontent.com/ADNPolymerase/ha-oklyn/main/docs/lang-en.svg" alt="Read in English" height="60"></a>
+
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-blue.svg)](https://github.com/hacs/default)
 [![GitHub Release](https://badgen.net/github/release/ADNPolymerase/ha-oklyn)](https://github.com/ADNPolymerase/ha-oklyn/releases)
 [![Hassfest](https://github.com/ADNPolymerase/ha-oklyn/actions/workflows/hassfest.yml/badge.svg)](https://github.com/ADNPolymerase/ha-oklyn/actions/workflows/hassfest.yml)
@@ -15,8 +17,6 @@
 <a href="https://adnpolymerase.github.io/HA/" target="_blank"><img src="https://raw.githubusercontent.com/ADNPolymerase/HA/main/assets/site-button.svg" alt="Link to my github.io for my other projects" height="60"></a>
 
 Intégration custom pour le **boîtier piscine Oklyn**, https://www.oklyn.fr/ publiée via HACS.
-
-> 🇬🇧 [Read in English](README.md)
 
 > 🎴 **Carte dédiée disponible :** [Oklyn Card](https://github.com/ADNPolymerase/oklyn-card) — carte Lovelace avec seuils pH/RedOx, contrôle pompe, auxiliaires et correction pH. Aucune dépendance, éditeur visuel complet.
 > [![Ouvrir dans HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=ADNPolymerase&repository=oklyn-card&category=plugin)
