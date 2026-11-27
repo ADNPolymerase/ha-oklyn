@@ -20,6 +20,9 @@ from homeassistant.helpers.selector import (
     SelectSelector,
     SelectSelectorConfig,
     SelectSelectorMode,
+    TextSelector,
+    TextSelectorConfig,
+    TextSelectorType,
 )
 
 from .api import OklynApiClient, OklynAuthError, OklynConnectionError, OklynResponseError
@@ -51,10 +54,13 @@ from .const import (
 
 _LOGGER = logging.getLogger(__name__)
 
+# Mask the API token on screen (setup and reauth).
+API_TOKEN_SELECTOR = TextSelector(TextSelectorConfig(type=TextSelectorType.PASSWORD))
+
 STEP_USER_SCHEMA = vol.Schema(
     {
         vol.Optional(CONF_NAME, default=DEFAULT_NAME): str,
-        vol.Required(CONF_API_TOKEN): str,
+        vol.Required(CONF_API_TOKEN): API_TOKEN_SELECTOR,
     }
 )
 
@@ -83,7 +89,7 @@ STEP_OPTIONS_SCHEMA = vol.Schema(
 
 REAUTH_SCHEMA = vol.Schema(
     {
-        vol.Required(CONF_API_TOKEN): str,
+        vol.Required(CONF_API_TOKEN): API_TOKEN_SELECTOR,
     }
 )
 
